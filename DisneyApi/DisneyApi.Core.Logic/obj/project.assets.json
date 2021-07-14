@@ -1519,20 +1519,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "DisneyApi.Core.Models/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8"
-        },
-        "compile": {
-          "bin/placeholder/DisneyApi.Core.Models.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DisneyApi.Core.Models.dll": {}
-        }
       }
     }
   },
@@ -5763,16 +5749,10 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "DisneyApi.Core.Models/1.0.0": {
-      "type": "project",
-      "path": "../DisneyApi.Core.Models/DisneyApi.Core.Models.csproj",
-      "msbuildProject": "../DisneyApi.Core.Models/DisneyApi.Core.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "DisneyApi.Core.Models >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.8",
       "Microsoft.EntityFrameworkCore.Relational >= 5.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.8",
@@ -5815,11 +5795,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
-              "projectPath": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

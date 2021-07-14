@@ -1,19 +1,14 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace DisneyApi.Core.Api
 {
+    using DisneyApi.Core.Models.Context;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -28,6 +23,21 @@ namespace DisneyApi.Core.Api
         {
 
             services.AddControllers();
+            services.AddCors();
+            services.AddMvc();
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
+
+           // services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddDbContext<DisneyDBContext>(cfg =>
+            {
+                //cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));   Produccion
+                cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));     //  Base Test 
+            });
+
+            //services.AddTransient<IMailService, MailService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });

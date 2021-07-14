@@ -6,6 +6,10 @@
 
     public class DisneyDBContext : DbContext
     {
+        public DisneyDBContext(DbContextOptions<DisneyDBContext> options) : base(options)
+        {
+
+        }
         public DbSet<Personaje> Personaje { get; set; }
         public DbSet<PeliculaSerie> PeliculaSerie { get; set; }
         public DbSet<Genero> Genero { get; set; }

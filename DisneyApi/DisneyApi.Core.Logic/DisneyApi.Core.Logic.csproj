@@ -17,8 +17,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DisneyApi.Core.Models\DisneyApi.Core.Models.csproj" />
-  </ItemGroup>
-
 </Project>
