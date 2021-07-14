@@ -1,15 +1,14 @@
 ﻿namespace DisneyApi.Core.Models.Repository
 {
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
-        IQueryable<T> FindAll();
-        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<List<T>> GetAll();
+        Task<T> Get(int id);
+        Task<T> Add(T entity);
+        Task<T> Update(T entity);
+        Task<T> Delete(int id);
     }
 }

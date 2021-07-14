@@ -1591,6 +1591,21 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "DisneyApi.Core.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DisneyApi.Core.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8"
+        },
+        "compile": {
+          "bin/placeholder/DisneyApi.Core.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DisneyApi.Core.Logic.dll": {}
+        }
+      },
       "DisneyApi.Core.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5951,6 +5966,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "DisneyApi.Core.Logic/1.0.0": {
+      "type": "project",
+      "path": "../DisneyApi.Core.Logic/DisneyApi.Core.Logic.csproj",
+      "msbuildProject": "../DisneyApi.Core.Logic/DisneyApi.Core.Logic.csproj"
+    },
     "DisneyApi.Core.Models/1.0.0": {
       "type": "project",
       "path": "../DisneyApi.Core.Models/DisneyApi.Core.Models.csproj",
@@ -5959,6 +5979,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "DisneyApi.Core.Logic >= 1.0.0",
       "DisneyApi.Core.Models >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.8",
       "Microsoft.EntityFrameworkCore.Relational >= 5.0.8",
@@ -6004,6 +6025,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Logic.csproj": {
+              "projectPath": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Logic.csproj"
+            },
             "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
               "projectPath": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj"
             }
@@ -6063,7 +6087,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

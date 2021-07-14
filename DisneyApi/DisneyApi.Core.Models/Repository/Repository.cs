@@ -1,44 +1,55 @@
 ﻿namespace DisneyApi.Core.Models.Repository
 {
-    using DisneyApi.Core.Models.Context;
     using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Linq;
-    using System.Linq.Expressions;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T, TContext> : IRepository<T> where T : class
+                                                          where TContext : DbContext
     {
-        protected DisneyDBContext DisneyDBContext { get; set; }
+        private readonly TContext context;
 
-        public Repository(DisneyDBContext disneyDBContext)
+        public Repository(TContext dbContext)
         {
-            DisneyDBContext = disneyDBContext;
+            context = dbContext;
         }
 
-        public void Create(T entity)
+        public async Task<T> Add(T entity)
         {
-            this.DisneyDBContext.Set<T>().Add(entity);
+            context.Set<T>().Add(entity);
+            await context.SaveChangesAsync();
+            return entity;
         }
 
-        public void Delete(T entity)
+        public async Task<T> Delete(int id)
         {
-            this.DisneyDBContext.Set<T>().Remove(entity);
+            var entity = await context.Set<T>().FindAsync(id);
+            if (entity == null)
+            {
+                return entity;
+            }
+
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
+
+            return entity;
         }
 
-        public IQueryable<T> FindAll()
+        public async Task<T> Get(int id)
         {
-            return this.DisneyDBContext.Set<T>().AsNoTracking();
+            return await context.Set<T>().FindAsync(id);
+        }      
+
+        public async Task<T> Update(T entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return entity;
         }
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetAll()
         {
-            return this.DisneyDBContext.Set<T>()
-           .Where(expression).AsNoTracking();
-        }
-
-        public void Update(T entity)
-        {
-            this.DisneyDBContext.Set<T>().Update(entity);
+            return await context.Set<T>().ToListAsync();
         }
     }
 }

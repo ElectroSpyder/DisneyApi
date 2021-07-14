@@ -61,3 +61,5 @@ D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyAp
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\ref\DisneyApi.Core.Api.dll
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.pdb
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.genruntimeconfig.cache
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Logic.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Logic.pdb

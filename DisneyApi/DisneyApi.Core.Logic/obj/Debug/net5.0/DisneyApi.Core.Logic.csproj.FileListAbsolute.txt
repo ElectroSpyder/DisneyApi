@@ -13,3 +13,6 @@ D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\ref\Di
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Logic.pdb
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Logic.genruntimeconfig.cache
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Logic.csproj.AssemblyReference.cache
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Models.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Models.pdb
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Logic.csproj.CopyComplete

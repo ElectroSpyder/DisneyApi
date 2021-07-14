@@ -1,5 +1,6 @@
 namespace DisneyApi.Core.Api
 {
+    using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Context;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,9 @@ namespace DisneyApi.Core.Api
             });
 
             //services.AddTransient<IMailService, MailService>();
+            services.AddScoped<PersonajeRepository>();
+            services.AddScoped<PeliculaSerieRepository>();
+            services.AddScoped<UsuarioRepository>();
 
             services.AddSwaggerGen(c =>
             {
