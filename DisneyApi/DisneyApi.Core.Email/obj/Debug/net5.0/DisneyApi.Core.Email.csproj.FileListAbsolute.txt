@@ -1,0 +1,12 @@
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\bin\Debug\net5.0\DisneyApi.Core.Email.deps.json
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\bin\Debug\net5.0\DisneyApi.Core.Email.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\bin\Debug\net5.0\ref\DisneyApi.Core.Email.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\bin\Debug\net5.0\DisneyApi.Core.Email.pdb
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.csproj.AssemblyReference.cache
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.AssemblyInfoInputs.cache
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.AssemblyInfo.cs
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.csproj.CoreCompileInputs.cache
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\ref\DisneyApi.Core.Email.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.pdb

@@ -1,5 +1,6 @@
 namespace DisneyApi.Core.Api
 {
+    using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Context;
     using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,7 @@ namespace DisneyApi.Core.Api
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession();
 
-           // services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
 
             services.AddDbContext<DisneyDBContext>(cfg =>
             {                
