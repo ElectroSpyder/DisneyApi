@@ -10,20 +10,21 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class PersonajeController : ControllerBase
+    public class PeliculaSerieController : ControllerBase
     {
-        private readonly PersonajeRepository personajeRepository;
-        public PersonajeController(PersonajeRepository repository) 
+        private readonly PeliculaSerieRepository peliculaSerieRepository;
+
+        public PeliculaSerieController(PeliculaSerieRepository repository)
         {
-            personajeRepository = repository;
+            peliculaSerieRepository = repository;
         }
 
-        [HttpGet("/characters")]
+        [HttpGet("/movies")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<Personaje>>> GetAll()
+        public async Task<ActionResult<List<PeliculaSerie>>> GetAll()
         {
-            var result= personajeRepository.GetAll().Result;
+            var result = peliculaSerieRepository.GetAll().Result;
             await Task.Delay(500).ConfigureAwait(false);
             return result;
         }
@@ -31,22 +32,20 @@
         [HttpPost("/Add")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<bool> Add(PersonajeViewModel personajeViewModel)
+        public async Task<bool> Add(PeliculaSerieViewModel peliculaSerieViewModel)
         {
-            var personaje = new Personaje
+            var pelicualSerie = new PeliculaSerie
             {
-                Nombre = personajeViewModel.Nombre,
-                Edad = personajeViewModel.Edad,
-                Peso = personajeViewModel.Peso,
-                Historia = personajeViewModel.Historia
+                Titulo = peliculaSerieViewModel.Titulo,
+                FechaCreacion = peliculaSerieViewModel.FechaCreacion,
+                Calificacion = peliculaSerieViewModel.Calificacion
             };
 
-            await personajeRepository.Add(personaje);
+            await peliculaSerieRepository.Add(pelicualSerie);
             await Task.Delay(500).ConfigureAwait(false);
 
             return true;
 
         }
-        
     }
 }
