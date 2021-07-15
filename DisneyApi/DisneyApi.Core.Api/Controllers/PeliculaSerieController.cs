@@ -29,7 +29,7 @@
             return result;
         }
 
-        [HttpPost("/Add")]
+        [HttpPost("/movie/Add")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<bool> Add(PeliculaSerieViewModel peliculaSerieViewModel)

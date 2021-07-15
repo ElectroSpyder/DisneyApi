@@ -40,6 +40,7 @@ namespace DisneyApi.Core.Api
             services.AddScoped<PersonajeRepository>();
             services.AddScoped<PeliculaSerieRepository>();
             services.AddScoped<UsuarioRepository>();
+            services.AddScoped<GeneroRepository>();
 
             services.AddSwaggerGen(c =>
             {
