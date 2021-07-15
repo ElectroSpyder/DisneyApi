@@ -1,4 +1,6 @@
-﻿namespace DisneyApi.Core.Api.ViewModels
+﻿using Microsoft.AspNetCore.Http;
+
+namespace DisneyApi.Core.Api.ViewModels
 {
 
     public class PersonajeViewModel
@@ -10,6 +12,11 @@
         public double Peso { get; set; }
        
         public string Historia { get; set; }
+
+        public IFormFile  Image { get; set; }
+
+        public byte[] Contentt { get; set; }
+
 
     }
 }

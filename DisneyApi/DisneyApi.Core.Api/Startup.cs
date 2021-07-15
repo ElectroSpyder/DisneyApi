@@ -32,8 +32,7 @@ namespace DisneyApi.Core.Api
            // services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             services.AddDbContext<DisneyDBContext>(cfg =>
-            {
-                //cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));   Produccion
+            {                
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));     //  Base Test 
             });
 
