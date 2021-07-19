@@ -63,3 +63,4 @@ D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyAp
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.genruntimeconfig.cache
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Logic.dll
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Logic.pdb
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

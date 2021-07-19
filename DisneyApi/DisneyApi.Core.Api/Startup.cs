@@ -1,15 +1,19 @@
 namespace DisneyApi.Core.Api
 {
     using DisneyApi.Core.Api.Configuration;
+    using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Context;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using System.Text;
 
     public class Startup
     {
@@ -31,6 +35,8 @@ namespace DisneyApi.Core.Api
             services.AddSession();
 
             services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
+            services.Configure<TokensKey>(Configuration.GetSection("tokensKey"));
+            var token = Configuration.GetSection("tokenKey").Get<TokensKey>();
 
             services.AddDbContext<DisneyDBContext>(cfg =>
             {                
@@ -42,6 +48,25 @@ namespace DisneyApi.Core.Api
             services.AddScoped<PeliculaSerieRepository>();
             services.AddScoped<UsuarioRepository>();
             services.AddScoped<GeneroRepository>();
+
+            services.AddAuthentication(x =>
+           {
+               x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           }).AddJwtBearer(x =>
+          {
+              x.RequireHttpsMetadata = false;
+              x.SaveToken = true;
+              x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+              {
+                  ValidateIssuerSigningKey = true,
+                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.Secret)),
+                  ValidIssuer = token.Issuer,
+                  ValidAudience = token.Audience,
+                  ValidateIssuer = true,
+                  ValidateAudience = true
+              };
+          });
 
             services.AddSwaggerGen(c =>
             {
@@ -64,6 +89,7 @@ namespace DisneyApi.Core.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

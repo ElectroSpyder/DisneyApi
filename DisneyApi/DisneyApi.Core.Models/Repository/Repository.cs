@@ -1,7 +1,10 @@
 ﻿namespace DisneyApi.Core.Models.Repository
 {
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     public class Repository<T, TContext> : IRepository<T> where T : class
@@ -51,5 +54,13 @@
         {
             return await context.Set<T>().ToListAsync();
         }
+
+        public async Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter)
+        {
+            if (filter == null) return null;
+
+            var result = await context.Set<T>().Where(filter).ToListAsync();
+            return result;
+        }       
     }
 }
