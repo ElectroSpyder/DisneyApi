@@ -40,6 +40,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "5.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
+          "Microsoft.Extensions.Options": "5.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Swashbuckle.AspNetCore": "6.1.4",
           "System.IdentityModel.Tokens.Jwt": "6.11.1",

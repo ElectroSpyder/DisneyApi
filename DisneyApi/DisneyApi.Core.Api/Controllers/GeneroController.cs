@@ -12,7 +12,7 @@
     {
 
         private readonly GeneroRepository generoRepository;
-        public byte[] contentt { get; set; }
+        public byte[] Contentt { get; set; }
         public GeneroController(GeneroRepository repository)
         {
             generoRepository = repository;

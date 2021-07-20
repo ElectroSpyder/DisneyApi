@@ -3,6 +3,7 @@
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Entities;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
@@ -11,10 +12,11 @@
 
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class PersonajeController : ControllerBase
     {
         private readonly PersonajeRepository personajeRepository;
-        public byte[] contentt { get; set; }
+        public byte[] Contentt { get; set; }
         public PersonajeController(PersonajeRepository repository) 
         {
             personajeRepository = repository;
@@ -53,7 +55,7 @@
                 // Upload the file if less than 2 MB
                 if (memoryStream.Length < 2097152)
                 {
-                    contentt = memoryStream.ToArray();           
+                    Contentt = memoryStream.ToArray();           
                 }
                 else
                 {
@@ -63,7 +65,7 @@
 
             personaje.Imagen = new Imagen
             {
-                Contentt = contentt
+                Contentt = Contentt
             };
 
             await personajeRepository.Add(personaje);

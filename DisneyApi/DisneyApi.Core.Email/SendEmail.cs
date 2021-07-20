@@ -26,7 +26,7 @@
 
             var mensaje = MailHelper.CreateSingleEmail(EmailFrom, EmailDestido, Subject, Context, HtmlContent);
 
-            var response = await client.SendEmailAsync(mensaje);
+            await client.SendEmailAsync(mensaje);
 
         }
     }

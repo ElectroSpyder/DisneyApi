@@ -1,5 +1,6 @@
 namespace DisneyApi.Core.Api
 {
+    using DisneyApi.Core.Api.Auth;
     using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
@@ -48,6 +49,7 @@ namespace DisneyApi.Core.Api
             services.AddScoped<PeliculaSerieRepository>();
             services.AddScoped<UsuarioRepository>();
             services.AddScoped<GeneroRepository>();
+            services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
 
             services.AddAuthentication(x =>
            {
