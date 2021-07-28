@@ -2706,7 +2706,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sistemas\\.nuget\\packages\\": {},
+    "C:\\Users\\Pedro René González\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
@@ -2714,11 +2714,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyecto Net\\Disney.Api\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
+      "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
       "projectName": "DisneyApi.Core.Email",
-      "projectPath": "D:\\Proyecto Net\\Disney.Api\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
-      "packagesPath": "C:\\Users\\Sistemas\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyecto Net\\Disney.Api\\DisneyApi\\DisneyApi.Core.Email\\obj\\",
+      "projectPath": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
+      "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
+      "outputPath": "D:\\Proyecto NET\\DisneyApi\\DisneyApi\\DisneyApi.Core.Email\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -2726,7 +2726,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sistemas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Pedro René González\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
