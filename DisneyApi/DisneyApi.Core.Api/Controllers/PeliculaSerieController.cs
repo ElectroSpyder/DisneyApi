@@ -3,13 +3,15 @@
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Entities;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]")]    
     public class PeliculaSerieController : ControllerBase
     {
         private readonly PeliculaSerieRepository peliculaSerieRepository;

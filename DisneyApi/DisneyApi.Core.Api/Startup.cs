@@ -1,6 +1,5 @@
 namespace DisneyApi.Core.Api
 {
-    using DisneyApi.Core.Api.Auth;
     using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
@@ -14,6 +13,7 @@ namespace DisneyApi.Core.Api
     using Microsoft.Extensions.Hosting;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using System.Reflection;
     using System.Text;
 
     public class Startup
@@ -28,19 +28,37 @@ namespace DisneyApi.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>   // Adding Jwt Bearer
+                {
+                    options.SaveToken = true;
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidAudience = Configuration["JWT: ValidAudience"],
+                        ValidIssuer = Configuration["JWT: ValidIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT: SecretKey"]))
+                    };
+                });
 
             services.AddControllers();
             services.AddCors();
             services.AddMvc();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession();
 
             services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
-            services.Configure<TokensKey>(Configuration.GetSection("tokensKey"));
-            var token = Configuration.GetSection("tokenKey").Get<TokensKey>();
-
+         
             services.AddDbContext<DisneyDBContext>(cfg =>
-            {                
+            {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));     //  Base Test 
             });
 
@@ -48,31 +66,41 @@ namespace DisneyApi.Core.Api
             services.AddScoped<PersonajeRepository>();
             services.AddScoped<PeliculaSerieRepository>();
             services.AddScoped<UsuarioRepository>();
-            services.AddScoped<GeneroRepository>();
-            services.AddScoped<IAuthenticateService, TokenAuthenticationService>();
-
-            services.AddAuthentication(x =>
-           {
-               x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-           }).AddJwtBearer(x =>
-          {
-              x.RequireHttpsMetadata = false;
-              x.SaveToken = true;
-              x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-              {
-                  ValidateIssuerSigningKey = true,
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(token.Secret)),
-                  ValidIssuer = token.Issuer,
-                  ValidAudience = token.Audience,
-                  ValidateIssuer = true,
-                  ValidateAudience = true
-              };
-          });
+            services.AddScoped<GeneroRepository>();           
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "DisneyApi.Core.Api",
+                    Version = "v1",
+                    Description = "Authentication and Authorization for Disney.Api"
+                });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter => 'Bearer Token' for validate",
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+
             });
         }
 
@@ -90,8 +118,9 @@ namespace DisneyApi.Core.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

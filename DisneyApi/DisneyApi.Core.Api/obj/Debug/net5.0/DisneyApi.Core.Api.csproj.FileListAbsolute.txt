@@ -130,3 +130,5 @@ D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyA
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\ref\DisneyApi.Core.Api.dll
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.pdb
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.genruntimeconfig.cache
+D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMapper.dll
+D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

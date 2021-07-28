@@ -55,6 +55,11 @@
             return await context.Set<T>().ToListAsync();
         }
 
+        /// <summary>
+        /// Return null if not found
+        /// </summary>
+        /// <param name="filter">exampl filter = (x=> x.attribut == model.attribut)</param>
+        /// <returns>List<T></returns>
         public async Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter)
         {
             if (filter == null) return null;

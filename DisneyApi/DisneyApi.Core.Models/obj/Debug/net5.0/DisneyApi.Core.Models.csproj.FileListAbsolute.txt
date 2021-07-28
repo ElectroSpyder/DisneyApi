@@ -19,7 +19,6 @@ D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\Disn
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\DisneyApi.Core.Models.dll
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\ref\DisneyApi.Core.Models.dll
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\DisneyApi.Core.Models.pdb
-D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.csproj.AssemblyReference.cache
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.GeneratedMSBuildEditorConfig.editorconfig
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.AssemblyInfoInputs.cache
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.AssemblyInfo.cs
