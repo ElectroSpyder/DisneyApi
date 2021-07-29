@@ -3,7 +3,6 @@ using DisneyApi.Core.Api.ViewModels;
 using DisneyApi.Core.Logic.EntitiesRepositories;
 using DisneyApi.Core.Models.Entities;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

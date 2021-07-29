@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
 
     [ApiController]
+    [Route("[controller]")]
     public class GeneroController : ControllerBase
     {
 

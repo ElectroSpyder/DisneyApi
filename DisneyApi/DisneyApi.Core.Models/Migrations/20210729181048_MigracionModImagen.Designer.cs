@@ -4,14 +4,16 @@ using DisneyApi.Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyApi.Core.Models.Migrations
 {
     [DbContext(typeof(DisneyDBContext))]
-    partial class DisneyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210729181048_MigracionModImagen")]
+    partial class MigracionModImagen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,8 +88,8 @@ namespace DisneyApi.Core.Models.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Historia")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ImagenTitulo")
                         .HasColumnType("nvarchar(max)");

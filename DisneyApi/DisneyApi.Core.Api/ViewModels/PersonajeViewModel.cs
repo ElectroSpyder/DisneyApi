@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace DisneyApi.Core.Api.ViewModels
+﻿namespace DisneyApi.Core.Api.ViewModels
 {
 
     public class PersonajeViewModel
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
        
         public int Edad { get; set; }
@@ -13,10 +12,9 @@ namespace DisneyApi.Core.Api.ViewModels
        
         public string Historia { get; set; }
 
-        public IFormFile  Image { get; set; }
+        public string ImagenUrl { get; set; }
 
-        public byte[] Contentt { get; set; }
-
+        public string ImagenTitulo { get; set; }
 
     }
 }

@@ -20,7 +20,7 @@
         [Range(0.1, 150, ErrorMessage = "Entre {1}, {2}")]
         public double Peso { get; set; }
 
-        [StringLength(300,ErrorMessage ="La Historia debe ser corta, hasta {1} caracteres")]
+        [StringLength(1000,ErrorMessage ="La Historia debe ser corta, hasta {1} caracteres")]
         public string Historia { get; set; }
 
         public virtual ICollection<PersonajePeliculaSerie>  PersonajePeliculasSeries { get; set; }

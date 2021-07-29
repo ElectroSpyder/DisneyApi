@@ -1,79 +1,95 @@
 ﻿namespace DisneyApi.Core.Api.Controllers
 {
+    using AutoMapper;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Entities;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading.Tasks;
 
     [ApiController]
-    [Route("[controller]")]
-    [Authorize]
+    [Route("[controller]")]    
     public class PersonajeController : ControllerBase
     {
         private readonly PersonajeRepository personajeRepository;
-        public byte[] Contentt { get; set; }
-        public PersonajeController(PersonajeRepository repository) 
+        private readonly IMapper _mapper;
+        public PersonajeController(PersonajeRepository repository, IMapper mapper) 
         {
             personajeRepository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet("/characters")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<Personaje>>> GetAll()
+        public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll()
         {
-            var result= personajeRepository.GetAll().Result;
-            await Task.Delay(500).ConfigureAwait(false);
-            return result;
+            var result= await personajeRepository.GetAll();
+            var listPersonaje = _mapper.Map<List<ListPersonajeViewModel>>(result);
+            return listPersonaje;
         }
 
         [HttpPost("/personaje/Add")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<bool> Add(PersonajeViewModel personajeViewModel)
+        public async Task<PersonajeViewModel> Add(PersonajeViewModel personajeViewModel)
         {
-            var personaje = new Personaje
-            {
-                Nombre = personajeViewModel.Nombre,
-                Edad = personajeViewModel.Edad,
-                Peso = personajeViewModel.Peso,
-                Historia = personajeViewModel.Historia
-            };
-
-            //TODO : Probar si se obtiene el byte[] de la imagen
-            //https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-2.2
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await personajeViewModel.Image.CopyToAsync(memoryStream);
-
-                // Upload the file if less than 2 MB
-                if (memoryStream.Length < 2097152)
-                {
-                    Contentt = memoryStream.ToArray();           
-                }
-                else
-                {
-                    ModelState.AddModelError("File", "The file is too large.");
-                }
-            }
-
-            personaje.Imagen = new Imagen
-            {
-                Contentt = Contentt
-            };
-
-            await personajeRepository.Add(personaje);
-            await Task.Delay(500).ConfigureAwait(false);
-
-            return true;
+            var entityMap = _mapper.Map<Personaje>(personajeViewModel);
+            await personajeRepository.Add(entityMap);
+            
+            return personajeViewModel;
 
         }
-        
+
+        [HttpPut("/personaje/update")]
+        public async Task<ActionResult<PersonajeViewModel>> Put(PersonajeViewModel personajeViewModel)
+        {
+            try
+            {
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id);
+                if (entityExist == null) return NotFound();
+                if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
+
+                var entityMap = _mapper.Map<Personaje>(personajeViewModel);
+                var result = await personajeRepository.Update(entityMap);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return NotFound();
+        }
+
+        [HttpDelete("/personaje/delete")]
+        public async Task<ActionResult<PersonajeViewModel>> Delete(PersonajeViewModel personajeViewModel)
+        {
+            try
+            {
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id);
+                if (entityExist == null) return NotFound();
+                if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
+
+                var entityMap = _mapper.Map<Personaje>(personajeViewModel);
+                var result = await personajeRepository.Delete(entityMap.Id);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+
+
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return NotFound();
+        }
+
     }
 }

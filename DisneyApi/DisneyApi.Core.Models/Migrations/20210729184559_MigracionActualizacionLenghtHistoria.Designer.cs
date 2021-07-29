@@ -4,14 +4,16 @@ using DisneyApi.Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyApi.Core.Models.Migrations
 {
     [DbContext(typeof(DisneyDBContext))]
-    partial class DisneyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210729184559_MigracionActualizacionLenghtHistoria")]
+    partial class MigracionActualizacionLenghtHistoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

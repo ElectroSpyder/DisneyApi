@@ -2,7 +2,8 @@
 {
     public class ObjetoBase
     {
-
-        public Imagen Imagen { get; set; }
+        public string ImagenUrl { get; set; }
+        public string ImagenTitulo { get; set; }
+        //public Imagen Imagen { get; set; }
     }
 }
