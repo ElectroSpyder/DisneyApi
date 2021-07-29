@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DisneyApi.Core.Api.ViewModels;
+using DisneyApi.Core.Email;
 using DisneyApi.Core.Logic.EntitiesRepositories;
 using DisneyApi.Core.Models.Entities;
 using Microsoft.AspNetCore.Http;
@@ -55,7 +56,13 @@ namespace DisneyApi.Core.Api.Controllers
 
                 var result = await _usuarioRepository.Add(usuario);
 
-                if (result != null) return Ok(new Response { Status = "Success", Mensaje = "Usuario creado satisfactoriamente" });
+                if (result != null) {
+                    var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
+                    await sendEmail.Send();
+
+                    return Ok(new Response { Status = "Success", Mensaje = "Usuario creado satisfactoriamente, se envio email para validar" });
+                }
+                
 
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = "Ocurrio un problema al crear el sistema" });
             }

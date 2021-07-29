@@ -134,3 +134,7 @@ D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMap
 D:\Proyecto Net\Disney.Api\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMapper.dll
 D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\SendGrid.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\StarkbankEcdsa.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Email.dll
+D:\Proyecto NET\DisneyApi\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Email.pdb

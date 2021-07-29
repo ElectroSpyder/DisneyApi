@@ -1,5 +1,6 @@
 ﻿namespace DisneyApi.Core.Api.Controllers
 {
+    using AutoMapper;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Entities;
@@ -15,38 +16,84 @@
     public class PeliculaSerieController : ControllerBase
     {
         private readonly PeliculaSerieRepository peliculaSerieRepository;
-
-        public PeliculaSerieController(PeliculaSerieRepository repository)
+        private readonly IMapper _mapper;
+        public PeliculaSerieController(PeliculaSerieRepository repository, IMapper mapper)
         {
             peliculaSerieRepository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet("/movies")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<PeliculaSerie>>> GetAll()
+
+        public async Task<ActionResult<List<PeliculaSerieViewModel>>> GetAll(string name, int genre, string order)
         {
-            var result = peliculaSerieRepository.GetAll().Result;
-            await Task.Delay(500).ConfigureAwait(false);
-            return result;
+            /*var result = await peliculaSerieRepository.GetAll();
+            if (result == null) return NotFound();
+            if(result.Count == 0) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
+
+            var entityMap = _mapper.Map<List<PeliculaSerieViewModel>>(result);
+            return Ok(entityMap);*/
+
+            IList<PeliculaSerie> result = null;
+            if (name == null && genre == 0)
+            {
+                result = await peliculaSerieRepository.GetAll();
+            }
+            else
+            {
+                if (genre != 0)
+                {
+                    result = await peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre, order);
+                }
+                else
+                {
+                    if (name != null)
+                    {
+                        result = await peliculaSerieRepository.GetByFunc(x => x.Titulo == name, order);
+                    }
+                }
+            }
+
+            if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
+
+            var listPelicualSerie = _mapper.Map<List<PeliculaSerieViewModel>>(result);
+            return listPelicualSerie;
+
+
         }
 
         [HttpPost("/movie/Add")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<bool> Add(PeliculaSerieViewModel peliculaSerieViewModel)
+        public async Task<ActionResult<bool>> Add(PeliculaSerieViewModel peliculaSerieViewModel)
         {
-            var pelicualSerie = new PeliculaSerie
-            {
-                Titulo = peliculaSerieViewModel.Titulo,
-                FechaCreacion = peliculaSerieViewModel.FechaCreacion,
-                Calificacion = peliculaSerieViewModel.Calificacion
-            };
+            var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);
 
-            await peliculaSerieRepository.Add(pelicualSerie);
-            await Task.Delay(500).ConfigureAwait(false);
+            await peliculaSerieRepository.Add(entityMap);
 
-            return true;
+            return Ok(true);
+
+        }
+
+        [HttpPut("/movie/update")]
+        public async Task<ActionResult<bool>> Update(PeliculaSerieViewModel peliculaSerieViewModel)
+        {
+            var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);
+            if(entityMap == null) return NotFound();
+            
+            await peliculaSerieRepository.Add(entityMap);
+
+            return Ok(true);
+
+        }
+
+        [HttpDelete("/movie/delete")]
+        public async Task<ActionResult<bool>> Delete(PeliculaSerieViewModel peliculaSerieViewModel)
+        {
+            var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);
+            if (entityMap == null) return NotFound();
+
+            await peliculaSerieRepository.Delete(entityMap.Id);
+
+            return Ok(true);
 
         }
     }
