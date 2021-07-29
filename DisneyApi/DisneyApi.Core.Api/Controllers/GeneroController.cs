@@ -91,7 +91,7 @@
         {
             try
             {
-                var generoToDelete = await generoRepository.GetByFunc(x => x.Nombre == nombre);
+                var generoToDelete = await generoRepository.GetByFunc(x => x.Nombre == nombre, null);
                 if (generoToDelete == null) return NotFound();
 
                 var result = await generoRepository.Delete(generoToDelete[0].Id);
@@ -111,7 +111,7 @@
         {
             try
             {
-                var exist = await generoRepository.GetByFunc(x => x.Id == generoView.Id);
+                var exist = await generoRepository.GetByFunc(x => x.Id == generoView.Id, null);
                 if (exist == null) return NotFound();
                 if (exist.Count == 0) return NotFound();
 

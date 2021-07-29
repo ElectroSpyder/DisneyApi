@@ -22,12 +22,34 @@
         }
 
         [HttpGet("/characters")]
-        public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll()
+        public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll(string name = null, int genre = 0, string order = null)
         {
-            var result= await personajeRepository.GetAll();
+            IList<Personaje> result = null;
+            if (name == null && genre == 0)
+            {
+                result = await personajeRepository.GetAll();
+            }
+            else
+            {
+                if (genre != 0)
+                {
+                    result = await personajeRepository.GetByFunc(x => x.IdGenero == genre, order);
+                }
+                else
+                {
+                    if (name != null)
+                    {
+                        result = await personajeRepository.GetByFunc(x => x.Nombre == name, order);
+                    }
+                }                
+            }
+            
+            if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
+
             var listPersonaje = _mapper.Map<List<ListPersonajeViewModel>>(result);
             return listPersonaje;
         }
+
 
         [HttpPost("/personaje/Add")]
         public async Task<PersonajeViewModel> Add(PersonajeViewModel personajeViewModel)
@@ -44,7 +66,7 @@
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id);
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
                 if (entityExist == null) return NotFound();
                 if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
 
@@ -70,7 +92,7 @@
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id);
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
                 if (entityExist == null) return NotFound();
                 if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
 

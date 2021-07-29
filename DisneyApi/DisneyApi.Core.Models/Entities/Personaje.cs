@@ -22,7 +22,8 @@
 
         [StringLength(1000,ErrorMessage ="La Historia debe ser corta, hasta {1} caracteres")]
         public string Historia { get; set; }
-
+        public int IdGenero { get; set; }
+        public Genero Genero { get; set; }
         public virtual ICollection<PersonajePeliculaSerie>  PersonajePeliculasSeries { get; set; }
     }
 }

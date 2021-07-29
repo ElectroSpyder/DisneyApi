@@ -37,7 +37,7 @@ namespace DisneyApi.Core.Api.Controllers
         {
             try
             {
-                var usuarioExist = await _usuarioRepository.GetByFunc(x => x.Email == usuarioVM.Email);
+                var usuarioExist = await _usuarioRepository.GetByFunc(x => x.Email == usuarioVM.Email, null);
 
                 if (usuarioExist != null)
                 {
@@ -71,7 +71,7 @@ namespace DisneyApi.Core.Api.Controllers
         {
             try
             {
-                var result = await _usuarioRepository.GetByFunc(x => x.Email == model.Email && x.Password == model.Password);
+                var result = await _usuarioRepository.GetByFunc(x => x.Email == model.Email && x.Password == model.Password, null);
 
                 if (result != null)
                 {

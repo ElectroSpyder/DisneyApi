@@ -58,14 +58,15 @@
         /// <summary>
         /// Return null if not found
         /// </summary>
-        /// <param name="filter">exampl filter = (x=> x.attribut == model.attribut)</param>
+        /// <param name="filter">exampl filter = (x=> x.attribut == model.attribut), orderBy  DESC or ASC</param>
         /// <returns>List<T></returns>
-        public async Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter)
+        public async Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter, string order)
         {
             if (filter == null) return null;
 
-            var result = await context.Set<T>().Where(filter).ToListAsync();
-            return result;
+            if (order.ToUpper().Trim() == "DESC") return await context.Set<T>().Where(filter).OrderByDescending(filter).ToListAsync();
+            
+            return await context.Set<T>().Where(filter).OrderBy(filter).ToListAsync();
         }       
     }
 }
