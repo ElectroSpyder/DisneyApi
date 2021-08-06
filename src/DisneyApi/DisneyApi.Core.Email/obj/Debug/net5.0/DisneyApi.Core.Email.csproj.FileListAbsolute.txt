@@ -32,3 +32,4 @@ D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\Di
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\ref\DisneyApi.Core.Email.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.pdb
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Email\obj\Debug\net5.0\DisneyApi.Core.Email.csproj.AssemblyReference.cache

@@ -14,6 +14,7 @@ namespace DisneyApi.Core.Api
     using Microsoft.Extensions.Hosting;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using SendGrid.Extensions.DependencyInjection;
     using System.Reflection;
     using System.Text;
 
@@ -60,7 +61,8 @@ namespace DisneyApi.Core.Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"]))
                     };
                 });
-            
+
+            //services.AddSendGrid();
             services.AddControllers();
             services.AddCors();
             services.AddMvc();

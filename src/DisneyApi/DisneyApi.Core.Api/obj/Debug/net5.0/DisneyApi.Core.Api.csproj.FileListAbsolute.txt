@@ -215,3 +215,4 @@ D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Micr
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\SendGrid.Extensions.DependencyInjection.dll
