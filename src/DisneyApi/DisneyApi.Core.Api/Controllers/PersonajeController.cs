@@ -4,11 +4,14 @@
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Entities;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    [Authorize]
     [ApiController]
     [Route("[controller]")]    
     public class PersonajeController : ControllerBase
@@ -31,17 +34,25 @@
             }
             else
             {
-                if (genre != 0)
+                if (name != null && genre != 0)
                 {
-                    result = await personajeRepository.GetByFunc(x => x.IdGenero == genre, order);
+                    result = personajeRepository.GetByFunc(x => x.IdGenero == genre && x.Nombre == name, order).ToList();
                 }
                 else
                 {
-                    if (name != null)
+                    if (genre != 0)
                     {
-                        result = await personajeRepository.GetByFunc(x => x.Nombre == name, order);
+                        result = personajeRepository.GetByFunc(x => x.IdGenero == genre, order).ToList();
                     }
-                }                
+                    else
+                    {
+                        if (name != null)
+                        {
+                            result = personajeRepository.GetByFunc(x => x.Nombre == name, order).ToList();
+                        }
+                    }
+                }
+
             }
             
             if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
@@ -66,17 +77,14 @@
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
-                if (entityExist == null) return NotFound();
-                if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
+                var entityExist =  personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null).ToList();
+                if (!entityExist.Any()) return NotFound();
 
-                var entityMap = _mapper.Map<Personaje>(personajeViewModel);
-                var result = await personajeRepository.Update(entityMap);
-                if (result != null)
-                {
-                    return Ok(result);
-                }
+                _mapper.Map(personajeViewModel, entityExist[0]);
 
+                if (await personajeRepository.Update(entityExist[0]) != null) return Ok(_mapper.Map<GeneroViewModel>(entityExist[0]));
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 
             }
             catch (System.Exception ex)
@@ -84,7 +92,6 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
-            return NotFound();
         }
 
         [HttpDelete("/personaje/delete")]
@@ -92,15 +99,13 @@
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
-                if (entityExist == null) return NotFound();
-                if (entityExist.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No hay items para mostrar");
-
-                var entityMap = _mapper.Map<Personaje>(personajeViewModel);
-                var result = await personajeRepository.Delete(entityMap.Id);
+                var entityExist = personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null).ToList();
+                if (!entityExist.Any()) return NotFound();               
+                            
+                var result = await personajeRepository.Delete(entityExist[0].Id);
                 if (result != null)
                 {
-                    return Ok(result);
+                    return Ok(_mapper.Map(result,personajeViewModel));
                 }
 
 

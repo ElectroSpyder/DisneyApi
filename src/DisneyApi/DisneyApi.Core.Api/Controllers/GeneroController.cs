@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     [ApiController]
@@ -91,8 +92,8 @@
         {
             try
             {
-                var generoToDelete = await generoRepository.GetByFunc(x => x.Nombre == nombre, null);
-                if (generoToDelete == null) return NotFound();
+                var generoToDelete = generoRepository.GetByFunc(x => x.Nombre == nombre, null).ToList();
+                if (!generoToDelete.Any()) return NotFound();
 
                 var result = await generoRepository.Delete(generoToDelete[0].Id);
 
@@ -107,20 +108,18 @@
         }
 
         [HttpPut()]
-        public async Task<ActionResult<GeneroViewModel>> Put(GeneroViewModel generoView)
+        public async Task<ActionResult<GeneroViewModel>> Put(GeneroViewModel generoViewModel)
         {
             try
             {
-                var exist = await generoRepository.GetByFunc(x => x.Id == generoView.Id, null);
-                if (exist == null) return NotFound();
-                if (exist.Count == 0) return NotFound();
+                var oldModel = generoRepository.GetByFunc(x => x.Id == generoViewModel.Id, null).ToList();
+                if (!oldModel.Any()) return NotFound();
 
-                var generoToUpdate = _autoMapper.Map<Genero>(generoView);
-                var result = await generoRepository.Update(generoToUpdate);
+                _autoMapper.Map(generoViewModel, oldModel[0]);
 
-                if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrio un error inesperado");
+               if(await generoRepository.Update(oldModel[0]) != null) return Ok(_autoMapper.Map<GeneroViewModel>(oldModel[0]));
 
-                return Ok(generoToUpdate);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 
             }
             catch (Exception ex)

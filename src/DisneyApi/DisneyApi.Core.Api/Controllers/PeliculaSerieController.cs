@@ -8,11 +8,12 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
-    [Authorize]
+//    [Authorize]
     [ApiController]
-    [Route("[controller]")]    
+    [Route("api/[controller]")]    
     public class PeliculaSerieController : ControllerBase
     {
         private readonly PeliculaSerieRepository peliculaSerieRepository;
@@ -24,7 +25,6 @@
         }
 
         [HttpGet("/movies")]
-
         public async Task<ActionResult<List<PeliculaSerieViewModel>>> GetAll(string name, int genre, string order)
         {
             /*var result = await peliculaSerieRepository.GetAll();
@@ -34,24 +34,32 @@
             var entityMap = _mapper.Map<List<PeliculaSerieViewModel>>(result);
             return Ok(entityMap);*/
 
-            IList<PeliculaSerie> result = null;
+            List<PeliculaSerie> result = null;
             if (name == null && genre == 0)
             {
                 result = await peliculaSerieRepository.GetAll();
             }
             else
             {
-                if (genre != 0)
+                if (name != null && genre != 0)
                 {
-                    result = await peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre, order);
+                    result = peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre && x.Titulo == name, order).ToList();
                 }
                 else
                 {
-                    if (name != null)
+                    if (genre != 0)
                     {
-                        result = await peliculaSerieRepository.GetByFunc(x => x.Titulo == name, order);
+                        result = peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre, order).ToList();
+                    }
+                    else
+                    {
+                        if (name != null)
+                        {
+                            result = peliculaSerieRepository.GetByFunc(x => x.Titulo == name, order).ToList();
+                        }
                     }
                 }
+
             }
 
             if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
@@ -62,7 +70,7 @@
 
         }
 
-        [HttpPost("/movie/Add")]
+        [HttpPost()]
         public async Task<ActionResult<bool>> Add(PeliculaSerieViewModel peliculaSerieViewModel)
         {
             var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);
@@ -73,7 +81,7 @@
 
         }
 
-        [HttpPut("/movie/update")]
+        [HttpPut()]
         public async Task<ActionResult<bool>> Update(PeliculaSerieViewModel peliculaSerieViewModel)
         {
             var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);
@@ -85,7 +93,7 @@
 
         }
 
-        [HttpDelete("/movie/delete")]
+        [HttpDelete()]
         public async Task<ActionResult<bool>> Delete(PeliculaSerieViewModel peliculaSerieViewModel)
         {
             var entityMap = _mapper.Map<PeliculaSerie>(peliculaSerieViewModel);

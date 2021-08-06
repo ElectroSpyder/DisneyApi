@@ -1,4 +1,4 @@
-﻿namespace DisneyApi.Core.Models.Repository
+﻿namespace DisneyApi.Core.Logic.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +13,6 @@
         Task<T> Add(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
-        Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter, string order = null);
+        IQueryable<T> GetByFunc(Expression<Func<T, bool>> filter, string order = null);
     }
 }

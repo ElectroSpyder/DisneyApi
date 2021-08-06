@@ -1,13 +1,12 @@
 ﻿namespace DisneyApi.Core.Logic.EntitiesRepositories
 {
+    using DisneyApi.Core.Logic.Repository;
     using DisneyApi.Core.Models.Context;
     using DisneyApi.Core.Models.Entities;
-    using DisneyApi.Core.Models.Repository;
-    using System.Threading.Tasks;
 
-    public class UsuarioRepository : Repository<Usuario,DisneyDBContext>
+    public class UsuarioRepository : Repository<User,UserDbContext>
     {        
-        public UsuarioRepository(DisneyDBContext context): base(context)
+        public UsuarioRepository(UserDbContext context): base(context)
         {
 
         }

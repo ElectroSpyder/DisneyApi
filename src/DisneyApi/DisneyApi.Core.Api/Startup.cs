@@ -3,14 +3,19 @@ namespace DisneyApi.Core.Api
     using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.Models.Context;
+    using DisneyApi.Core.Models.Entities;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
     using System.Reflection;
+    using System.Text;
 
     public class Startup
     {
@@ -24,7 +29,19 @@ namespace DisneyApi.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           /* services.AddAuthentication(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            })
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders();
+           
+
+            services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -38,12 +55,12 @@ namespace DisneyApi.Core.Api
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
-                        ValidAudience = Configuration["JWT: ValidAudience"],
-                        ValidIssuer = Configuration["JWT: ValidIssuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT: SecretKey"]))
+                        ValidAudience = Configuration["JWT:ValidAudience"],
+                        ValidIssuer = Configuration["JWT:ValidIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"]))
                     };
                 });
-            */
+            
             services.AddControllers();
             services.AddCors();
             services.AddMvc();
@@ -56,6 +73,11 @@ namespace DisneyApi.Core.Api
             services.AddDbContext<DisneyDBContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));     //  Base Test 
+            });
+
+            services.AddDbContext<UserDbContext>(cfg =>
+            {
+                cfg.UseSqlServer(Configuration.GetConnectionString("UserIdentityConnection"));     //  Base Test 
             });
 
             //services.AddTransient<IMailService, MailService>();

@@ -14,7 +14,6 @@
         public DbSet<PeliculaSerie> PeliculaSerie { get; set; }
         public DbSet<Genero> Genero { get; set; }
         public DbSet<PersonajePeliculaSerie> PersonajePeliculaSeries { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override  void OnModelCreating(ModelBuilder modelBuilder)
         {

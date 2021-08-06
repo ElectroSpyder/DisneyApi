@@ -130,24 +130,6 @@ namespace DisneyApi.Core.Models.Migrations
                     b.ToTable("PersonajePeliculaSeries");
                 });
 
-            modelBuilder.Entity("DisneyApi.Core.Models.Entities.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
-                });
-
             modelBuilder.Entity("DisneyApi.Core.Models.Entities.PeliculaSerie", b =>
                 {
                     b.HasOne("DisneyApi.Core.Models.Entities.Genero", "Genero")

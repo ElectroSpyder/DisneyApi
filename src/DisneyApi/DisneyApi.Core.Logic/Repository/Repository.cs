@@ -1,4 +1,4 @@
-﻿namespace DisneyApi.Core.Models.Repository
+﻿namespace DisneyApi.Core.Logic.Repository
 {
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -60,13 +60,13 @@
         /// </summary>
         /// <param name="filter">exampl filter = (x=> x.attribut == model.attribut), orderBy  DESC or ASC</param>
         /// <returns>List<T></returns>
-        public async Task<IList<T>> GetByFunc(Expression<Func<T, bool>> filter, string order)
+        public IQueryable<T> GetByFunc(Expression<Func<T, bool>> filter, string order=null)
         {
             if (filter == null) return null;
-
-            if (order.ToUpper().Trim() == "DESC") return await context.Set<T>().Where(filter).OrderByDescending(filter).ToListAsync();
+            if (order == null) order = "ASC";
+            if (order.ToUpper().Trim() == "DESC") return context.Set<T>().Where(filter).OrderByDescending(filter).AsQueryable();
             
-            return await context.Set<T>().Where(filter).OrderBy(filter).ToListAsync();
+            return  context.Set<T>().Where(filter).OrderBy(filter).AsQueryable();
         }       
     }
 }

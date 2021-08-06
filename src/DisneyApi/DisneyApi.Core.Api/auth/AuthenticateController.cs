@@ -4,12 +4,14 @@ using DisneyApi.Core.Email;
 using DisneyApi.Core.Logic.EntitiesRepositories;
 using DisneyApi.Core.Models.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,44 +23,53 @@ namespace DisneyApi.Core.Api.Controllers
         private readonly UsuarioRepository _usuarioRepository;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
 
         public AuthenticateController(UsuarioRepository usuarioRepository,          
             IConfiguration configuration,
-            IMapper mapper)
+            IMapper mapper, UserManager<User> userManager)
         {
             _usuarioRepository = usuarioRepository;
             _configuration = configuration;
             _mapper = mapper;
+            _userManager = userManager;
         }
         // GET: AuthenticateController
        
         [HttpPost]
         [Route("/auth/register")]
-        public async Task<IActionResult> Register([FromBody] LoginViewModel usuarioVM)
+        public async Task<IActionResult> Register([FromBody] LoginViewModel loginViewModel)
         {
             try
             {
-                var usuarioExist = await _usuarioRepository.GetByFunc(x => x.Email == usuarioVM.Email, null);
-
-                if (usuarioExist != null)
+                //var usuarioExist = _usuarioRepository.GetByFunc(x => x.Email == loginViewModel.UserName, null).ToList();
+                var usuarioExist = await _userManager.FindByNameAsync(loginViewModel.UserName);
+                if (usuarioExist != null )
                 {
-                    if (usuarioExist.Count > 0)
-                        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = "Ya esta en uso el Correo" });
+                    //if(usuarioExist.Count() > 0)
+                        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = $"Ya esta en uso el usuario {loginViewModel.UserName}" });
                 }
 
-                var usuarioList = _mapper.Map<Usuario[]>(usuarioVM);
-                var usuario = new Usuario();
-
-                foreach (var item in usuarioList)
+                var usuario = new User()
                 {
-                    usuario = item;
+                    Email = loginViewModel.Email,
+                    UserName = loginViewModel.UserName,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+
+                var result = await _userManager.CreateAsync(usuario, loginViewModel.Password);
+                if (!result.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError,
+                        new Response
+                        {
+                            Status = "Error",
+                            Mensaje = $"Leer los mensajes: {string.Join(";", result.Errors.Select(x => x.Description))}"
+                        });
                 }
-
-                var result = await _usuarioRepository.Add(usuario);
-
                 if (result != null) {
-                    var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
-                    await sendEmail.Send();
+                   /* var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
+                    await sendEmail.Send();*/
 
                     return Ok(new Response { Status = "Success", Mensaje = "Usuario creado satisfactoriamente, se envio email para validar" });
                 }
@@ -74,40 +85,15 @@ namespace DisneyApi.Core.Api.Controllers
 
         [HttpPost]
         [Route("/auth/login")]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel loginViewModel)
         {
             try
             {
-                var result = await _usuarioRepository.GetByFunc(x => x.Email == model.Email && x.Password == model.Password, null);
+                var result = await _userManager.FindByNameAsync(loginViewModel.UserName);
 
                 if (result != null)
                 {
-                    if (result.Count > 0)
-                    {
-                        var authClaims = new List<Claim>
-                        {
-                            new Claim(ClaimTypes.Name, model.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                        };
-                        var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT: SecretKey"]));
-
-                        var token = new JwtSecurityToken(
-                            issuer: _configuration["JWT: ValidIssuer"],
-                            audience: _configuration["JWT: ValidAudience"],
-                            expires: DateTime.Now.AddHours(3),
-                            claims: authClaims,
-                            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
-                        
-                        return Ok(new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-                            expiration = token.ValidTo
-                        });
-                    }
-                    else
-                    {
-                        return Unauthorized();
-                    }
+                    return Ok(CreateToken(loginViewModel));   //retorna el token
                 }
                 else
                 {
@@ -119,6 +105,30 @@ namespace DisneyApi.Core.Api.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private IActionResult CreateToken(LoginViewModel loginViewModel)
+        {
+            var authClaims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, loginViewModel.Email),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                        };
+
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
+
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token)
+            });
+
         }
 
     }

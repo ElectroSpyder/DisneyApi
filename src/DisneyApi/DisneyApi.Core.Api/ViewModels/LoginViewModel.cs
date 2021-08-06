@@ -5,11 +5,12 @@
 
     public class LoginViewModel
     {
-        [Required]
-        [JsonProperty("email")]
-        public string Email { get; set; }
-        [Required]
-        [JsonProperty("password")]
+        [Required(ErrorMessage = "Debe ingresar Usuario")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Debe ingresa Contraseña")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Debe ingresar Email")]
+        [EmailAddress(ErrorMessage = "Correo invalido")]
+        public string Email { get; set; }
     }
 }

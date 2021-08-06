@@ -8,9 +8,9 @@
     {
         public UsuarioProfile()
         {
-            CreateMap<LoginViewModel, Usuario>();
+            CreateMap<LoginViewModel, User>();
 
-            CreateMap<Usuario, LoginViewModel>();
+            CreateMap<User, LoginViewModel>();
         }
     }
 }
