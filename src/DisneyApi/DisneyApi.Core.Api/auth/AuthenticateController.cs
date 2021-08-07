@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DisneyApi.Core.Api.Configuration;
 using DisneyApi.Core.Api.ViewModels;
 using DisneyApi.Core.Email;
 using DisneyApi.Core.Logic.EntitiesRepositories;
@@ -24,15 +25,17 @@ namespace DisneyApi.Core.Api.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-
+        private readonly IMailService mailService;
         public AuthenticateController(UsuarioRepository usuarioRepository,          
             IConfiguration configuration,
-            IMapper mapper, UserManager<User> userManager)
+            IMapper mapper, UserManager<User> userManager,
+            IMailService service)
         {
             _usuarioRepository = usuarioRepository;
             _configuration = configuration;
             _mapper = mapper;
             _userManager = userManager;
+            mailService = service;
         }
         // GET: AuthenticateController
        
@@ -68,9 +71,9 @@ namespace DisneyApi.Core.Api.Controllers
                         });
                 }
                 if (result != null) {
-                   /* var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
-                    await sendEmail.Send();*/
-
+                    /* var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
+                     await sendEmail.Send();*/
+                    await mailService.SendEmialAsync(usuario);
                     return Ok(new Response { Status = "Success", Mensaje = "Usuario creado satisfactoriamente, se envio email para validar" });
                 }
                 

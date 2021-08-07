@@ -105,9 +105,17 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.24.1, )"
+            },
             "SendGrid.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[1.0.0, )"
+            },
+            "Serilog.Sinks.ILogger": {
+              "target": "Package",
+              "version": "[1.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

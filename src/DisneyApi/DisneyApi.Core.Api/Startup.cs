@@ -62,7 +62,7 @@ namespace DisneyApi.Core.Api
                     };
                 });
 
-            //services.AddSendGrid();
+            services.AddSendGrid(x=> x.ApiKey = Configuration["SendEmailKey"]);
             services.AddControllers();
             services.AddCors();
             services.AddMvc();
@@ -70,7 +70,7 @@ namespace DisneyApi.Core.Api
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession();
 
-            services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
+            //services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
          
             services.AddDbContext<DisneyDBContext>(cfg =>
             {
@@ -87,6 +87,7 @@ namespace DisneyApi.Core.Api
             services.AddScoped<PeliculaSerieRepository>();
             services.AddScoped<UsuarioRepository>();
             services.AddScoped<GeneroRepository>();
+            services.AddScoped<IMailService, SendEmailService>();
 
             services.AddSwaggerGen(c =>
             {
