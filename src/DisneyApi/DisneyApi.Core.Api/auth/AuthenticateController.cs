@@ -21,19 +21,18 @@ namespace DisneyApi.Core.Api.Controllers
 {
     public class AuthenticateController : Controller
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        //private readonly UsuarioRepository _usuarioRepository; TODO: need implement IPasswordHasher<TUser>
         private readonly IConfiguration _configuration;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IMailService mailService;
-        public AuthenticateController(UsuarioRepository usuarioRepository,          
-            IConfiguration configuration,
-            IMapper mapper, UserManager<User> userManager,
+
+        public AuthenticateController(IConfiguration configuration,
+            UserManager<User> userManager,
             IMailService service)
         {
-            _usuarioRepository = usuarioRepository;
             _configuration = configuration;
-            _mapper = mapper;
+            //_mapper = mapper;
             _userManager = userManager;
             mailService = service;
         }
@@ -45,13 +44,10 @@ namespace DisneyApi.Core.Api.Controllers
         {
             try
             {
-                //var usuarioExist = _usuarioRepository.GetByFunc(x => x.Email == loginViewModel.UserName, null).ToList();
                 var usuarioExist = await _userManager.FindByNameAsync(loginViewModel.UserName);
                 if (usuarioExist != null )
-                {
-                    //if(usuarioExist.Count() > 0)
-                        return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = $"Ya esta en uso el usuario {loginViewModel.UserName}" });
-                }
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = $"Ya esta en uso el usuario {loginViewModel.UserName}" });
+                
 
                 var usuario = new User()
                 {
@@ -60,7 +56,8 @@ namespace DisneyApi.Core.Api.Controllers
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
 
-                var result = await _userManager.CreateAsync(usuario, loginViewModel.Password);
+                 var result = await _userManager.CreateAsync(usuario, loginViewModel.Password);
+
                 if (!result.Succeeded)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError,
@@ -70,14 +67,12 @@ namespace DisneyApi.Core.Api.Controllers
                             Mensaje = $"Leer los mensajes: {string.Join(";", result.Errors.Select(x => x.Description))}"
                         });
                 }
+
                 if (result != null) {
-                    /* var sendEmail = new SendEmail(_configuration["SendEmailKey: Key"], usuario.Email);  //"SendEmailKey": { "key"
-                     await sendEmail.Send();*/
                     await mailService.SendEmialAsync(usuario);
                     return Ok(new Response { Status = "Success", Mensaje = "Usuario creado satisfactoriamente, se envio email para validar" });
                 }
                 
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = "Ocurrio un problema al crear el sistema" });
             }
             catch (Exception ex)

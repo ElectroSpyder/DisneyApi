@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Models", "Di
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Logic", "DisneyApi.Core.Logic\DisneyApi.Core.Logic.csproj", "{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyApi.Core.Email", "DisneyApi.Core.Email\DisneyApi.Core.Email.csproj", "{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Email", "DisneyApi.Core.Email\DisneyApi.Core.Email.csproj", "{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

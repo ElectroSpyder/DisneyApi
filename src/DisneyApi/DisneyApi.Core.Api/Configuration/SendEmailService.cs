@@ -26,16 +26,26 @@
             {
                 _logger.LogInformation($"Enviando Email a {user.Email}");
 
-                var EmailFrom = new EmailAddress("prgazure@gmail.com", "Email de prueba");
+                var EmailFrom = new EmailAddress("prg@live.com.ar", "Email de prueba");
                 var EmailDestido = new EmailAddress(user.Email, "Destino");
 
                 var mensaje = MailHelper.CreateSingleEmail(EmailFrom, EmailDestido, Subject, Context, HtmlContent);
 
                 var response = await _sendGridClient.SendEmailAsync(mensaje);
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"Correcto; {response.Body.ReadAsStringAsync()}");
+                }
+                else
+                {
+                    _logger.LogInformation($"Error al enviar email; {response.Body.ReadAsStringAsync()}");
+                }
+                
             }
             catch (Exception ex)
             {
-                _logger.LogInformation($"Error al enviar email; {ex}");
+                _logger.LogInformation($"Exepcion al enviar email; {ex}");
+                
             }
         }
     }

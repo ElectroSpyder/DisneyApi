@@ -63,6 +63,7 @@ namespace DisneyApi.Core.Api
                 });
 
             services.AddSendGrid(x=> x.ApiKey = Configuration["SendEmailKey"]);
+
             services.AddControllers();
             services.AddCors();
             services.AddMvc();
