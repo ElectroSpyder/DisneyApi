@@ -25,40 +25,36 @@
         }
 
         [HttpGet("/characters")]
-        public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll(string name = null, int genre = 0, string order = null)
+        public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll()
         {
-            IList<Personaje> result = null;
-            if (name == null && genre == 0)
-            {
-                result = await personajeRepository.GetAll();
-            }
-            else
-            {
-                if (name != null && genre != 0)
-                {
-                    result = personajeRepository.GetByFunc(x => x.IdGenero == genre && x.Nombre == name, order).ToList();
-                }
-                else
-                {
-                    if (genre != 0)
-                    {
-                        result = personajeRepository.GetByFunc(x => x.IdGenero == genre, order).ToList();
-                    }
-                    else
-                    {
-                        if (name != null)
-                        {
-                            result = personajeRepository.GetByFunc(x => x.Nombre == name, order).ToList();
-                        }
-                    }
-                }
-
-            }
+            IList<Personaje> result = await personajeRepository.GetAll(); ;
+            
             
             if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
 
             var listPersonaje = _mapper.Map<List<ListPersonajeViewModel>>(result);
             return listPersonaje;
+        }
+
+        [HttpGet("/{name}")]
+        public async Task<ActionResult<PersonajeViewModel>> Get(string name)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(name))
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Nombre vacio");
+
+                var result = await  personajeRepository.GetByFunc(x => x.Nombre == name);
+
+                if (result == null)
+                    return NotFound($"Persnaje {name} no encontrado");
+
+                return _mapper.Map<PersonajeViewModel>(result.ToList()[0]);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al devolver datos, error : {ex.Message}");
+            }
         }
 
 
@@ -77,12 +73,18 @@
         {
             try
             {
-                var entityExist =  personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null).ToList();
-                if (!entityExist.Any()) return NotFound();
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
+                var personajeExist = new Personaje();
+                if (!entityExist.ToList().Any())
+                {                    
+                        return NotFound();                    
+                }
+                personajeExist = entityExist.ToList()[0];
 
-                _mapper.Map(personajeViewModel, entityExist[0]);
+                _mapper.Map(personajeViewModel, personajeExist);
 
-                if (await personajeRepository.Update(entityExist[0]) != null) return Ok(_mapper.Map<GeneroViewModel>(entityExist[0]));
+                if (await personajeRepository.Update(personajeExist) != null) 
+                    return Ok(_mapper.Map<GeneroViewModel>(personajeExist));
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 
@@ -99,10 +101,12 @@
         {
             try
             {
-                var entityExist = personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null).ToList();
-                if (!entityExist.Any()) return NotFound();               
-                            
-                var result = await personajeRepository.Delete(entityExist[0].Id);
+                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
+                if (entityExist == null) return NotFound();
+
+                var personajeExist = entityExist.ToList()[0];
+
+                var result = await personajeRepository.Delete(personajeExist.Id);
                 if (result != null)
                 {
                     return Ok(_mapper.Map(result,personajeViewModel));

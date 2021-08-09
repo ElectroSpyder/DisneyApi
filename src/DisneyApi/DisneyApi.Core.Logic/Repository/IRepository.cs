@@ -13,6 +13,6 @@
         Task<T> Add(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
-        IQueryable<T> GetByFunc(Expression<Func<T, bool>> filter, string order = null);
+        Task<IQueryable<T>> GetByFunc(Expression<Func<T, bool>> filter, string order = null);
     }
 }

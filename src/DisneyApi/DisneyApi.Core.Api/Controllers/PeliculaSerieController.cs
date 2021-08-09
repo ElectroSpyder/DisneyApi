@@ -11,7 +11,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-//    [Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]    
     public class PeliculaSerieController : ControllerBase
@@ -43,19 +43,19 @@
             {
                 if (name != null && genre != 0)
                 {
-                    result = peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre && x.Titulo == name, order).ToList();
+                    result = ( await peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre && x.Titulo == name, order)).ToList();
                 }
                 else
                 {
                     if (genre != 0)
                     {
-                        result = peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre, order).ToList();
+                        result =(await peliculaSerieRepository.GetByFunc(x => x.IdGenero == genre, order)).ToList();
                     }
                     else
                     {
                         if (name != null)
                         {
-                            result = peliculaSerieRepository.GetByFunc(x => x.Titulo == name, order).ToList();
+                            result = (await peliculaSerieRepository.GetByFunc(x => x.Titulo == name, order)).ToList();
                         }
                     }
                 }

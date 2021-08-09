@@ -60,11 +60,15 @@
         /// </summary>
         /// <param name="filter">exampl filter = (x=> x.attribut == model.attribut), orderBy  DESC or ASC</param>
         /// <returns>List<T></returns>
-        public IQueryable<T> GetByFunc(Expression<Func<T, bool>> filter, string order=null)
+        public async Task<IQueryable<T>> GetByFunc(Expression<Func<T, bool>> filter, string order=null)
         {
             if (filter == null) return null;
             if (order == null) order = "ASC";
-            if (order.ToUpper().Trim() == "DESC") return context.Set<T>().Where(filter).OrderByDescending(filter).AsQueryable();
+            if (order.ToUpper().Trim() == "DESC")
+            {
+                var result = await context.Set<T>().Where(filter).OrderByDescending(filter).ToListAsync();
+                return result.AsQueryable();
+            }
             
             return  context.Set<T>().Where(filter).OrderBy(filter).AsQueryable();
         }       

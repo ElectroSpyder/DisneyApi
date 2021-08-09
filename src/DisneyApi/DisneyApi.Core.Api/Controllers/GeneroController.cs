@@ -92,10 +92,11 @@
         {
             try
             {
-                var generoToDelete = generoRepository.GetByFunc(x => x.Nombre == nombre, null).ToList();
-                if (!generoToDelete.Any()) return NotFound();
+                var generoToDelete = await generoRepository.GetByFunc(x => x.Nombre == nombre, null);
+                if (generoToDelete == null) return NotFound();
 
-                var result = await generoRepository.Delete(generoToDelete[0].Id);
+                var genero = generoToDelete.ToList()[0];
+                var result = await generoRepository.Delete(genero.Id);
 
                 if (result != null) return Ok(true);
 
@@ -112,12 +113,14 @@
         {
             try
             {
-                var oldModel = generoRepository.GetByFunc(x => x.Id == generoViewModel.Id, null).ToList();
-                if (!oldModel.Any()) return NotFound();
+                var oldModel = await generoRepository.GetByFunc(x => x.Id == generoViewModel.Id, null);
+                if (oldModel == null) return NotFound();
 
-                _autoMapper.Map(generoViewModel, oldModel[0]);
+                var modelo = oldModel.ToList()[0];
+                _autoMapper.Map(generoViewModel, modelo);
 
-               if(await generoRepository.Update(oldModel[0]) != null) return Ok(_autoMapper.Map<GeneroViewModel>(oldModel[0]));
+               if(await generoRepository.Update(modelo) != null) 
+                    return Ok(_autoMapper.Map<GeneroViewModel>(modelo));
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 
