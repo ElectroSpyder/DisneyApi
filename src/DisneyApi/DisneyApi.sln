@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Api", "Disne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Models", "DisneyApi.Core.Models\DisneyApi.Core.Models.csproj", "{777F8EBC-50F8-41EB-B363-4D471FD9959F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.LogicRepositories", "DisneyApi.Core.Logic\DisneyApi.Core.LogicRepositories.csproj", "{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Repositories", "DisneyApi.Core.Logic\DisneyApi.Core.Repositories.csproj", "{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -34,8 +34,8 @@
       "DisneyApi.Core.Api/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
-          "DisneyApi.Core.LogicRepositories": "1.0.0",
           "DisneyApi.Core.Models": "1.0.0",
+          "DisneyApi.Core.Repositories": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
@@ -1691,17 +1691,6 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "DisneyApi.Core.LogicRepositories/1.0.0": {
-        "dependencies": {
-          "DisneyApi.Core.Models": "1.0.0"
-        },
-        "runtime": {
-          "DisneyApi.Core.LogicRepositories.dll": {}
-        },
-        "compile": {
-          "DisneyApi.Core.LogicRepositories.dll": {}
-        }
-      },
       "DisneyApi.Core.Models/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.8",
@@ -1714,6 +1703,17 @@
         },
         "compile": {
           "DisneyApi.Core.Models.dll": {}
+        }
+      },
+      "DisneyApi.Core.Repositories/1.0.0": {
+        "dependencies": {
+          "DisneyApi.Core.Models": "1.0.0"
+        },
+        "runtime": {
+          "DisneyApi.Core.Repositories.dll": {}
+        },
+        "compile": {
+          "DisneyApi.Core.Repositories.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4373,12 +4373,12 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "DisneyApi.Core.LogicRepositories/1.0.0": {
+    "DisneyApi.Core.Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "DisneyApi.Core.Models/1.0.0": {
+    "DisneyApi.Core.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,0 +1,15 @@
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Repositories.deps.json
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Repositories.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\ref\DisneyApi.Core.Repositories.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Repositories.pdb
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Models.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\bin\Debug\net5.0\DisneyApi.Core.Models.pdb
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.csproj.AssemblyReference.cache
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.AssemblyInfoInputs.cache
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.AssemblyInfo.cs
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.csproj.CoreCompileInputs.cache
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.csproj.CopyComplete
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\ref\DisneyApi.Core.Repositories.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Logic\obj\Debug\net5.0\DisneyApi.Core.Repositories.pdb

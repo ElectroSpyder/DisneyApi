@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xOwqnDiud9b17QQDeoyelZJun+zJar35oa6hK6eBU7LX+osi4a+w3GLxCiArnm1eMecDvqjZP3896KMG8onvoA==",
+  "dgSpecHash": "T0X8v1BYsONpAyigrg9BHDBSgAnWDXtkZXt3cL9pI6AnBFRN01pERZDmGjfOidvylmfolNN530n3Ntedgc0WPg==",
   "success": true,
-  "projectFilePath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.LogicRepositories.csproj",
+  "projectFilePath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro René González\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.8\\microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
     "C:\\Users\\Pedro René González\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.8\\microsoft.aspnetcore.cryptography.keyderivation.5.0.8.nupkg.sha512",

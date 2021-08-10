@@ -294,5 +294,5 @@ D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\Dis
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\ref\DisneyApi.Core.Api.dll
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.pdb
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\DisneyApi.Core.Api.genruntimeconfig.cache
-D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.LogicRepositories.dll
-D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.LogicRepositories.pdb
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Repositories.dll
+D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\DisneyApi.Core.Repositories.pdb

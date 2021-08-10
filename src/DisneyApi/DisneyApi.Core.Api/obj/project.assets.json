@@ -2062,19 +2062,6 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "DisneyApi.Core.LogicRepositories/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "DisneyApi.Core.Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DisneyApi.Core.LogicRepositories.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DisneyApi.Core.LogicRepositories.dll": {}
-        }
-      },
       "DisneyApi.Core.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2089,6 +2076,19 @@
         },
         "runtime": {
           "bin/placeholder/DisneyApi.Core.Models.dll": {}
+        }
+      },
+      "DisneyApi.Core.Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DisneyApi.Core.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DisneyApi.Core.Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DisneyApi.Core.Repositories.dll": {}
         }
       }
     }
@@ -6992,22 +6992,22 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "DisneyApi.Core.LogicRepositories/1.0.0": {
-      "type": "project",
-      "path": "../DisneyApi.Core.Logic/DisneyApi.Core.LogicRepositories.csproj",
-      "msbuildProject": "../DisneyApi.Core.Logic/DisneyApi.Core.LogicRepositories.csproj"
-    },
     "DisneyApi.Core.Models/1.0.0": {
       "type": "project",
       "path": "../DisneyApi.Core.Models/DisneyApi.Core.Models.csproj",
       "msbuildProject": "../DisneyApi.Core.Models/DisneyApi.Core.Models.csproj"
+    },
+    "DisneyApi.Core.Repositories/1.0.0": {
+      "type": "project",
+      "path": "../DisneyApi.Core.Logic/DisneyApi.Core.Repositories.csproj",
+      "msbuildProject": "../DisneyApi.Core.Logic/DisneyApi.Core.Repositories.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
-      "DisneyApi.Core.LogicRepositories >= 1.0.0",
       "DisneyApi.Core.Models >= 1.0.0",
+      "DisneyApi.Core.Repositories >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.8",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
       "Microsoft.AspNetCore.Mvc.Abstractions >= 2.2.0",
@@ -7062,8 +7062,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.LogicRepositories.csproj": {
-              "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.LogicRepositories.csproj"
+            "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj": {
+              "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj"
             },
             "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
               "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj"

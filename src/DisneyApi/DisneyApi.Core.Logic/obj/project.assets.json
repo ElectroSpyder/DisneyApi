@@ -5847,9 +5847,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.LogicRepositories.csproj",
-      "projectName": "DisneyApi.Core.LogicRepositories",
-      "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.LogicRepositories.csproj",
+      "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj",
+      "projectName": "DisneyApi.Core.Repositories",
+      "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj",
       "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
       "outputPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\obj\\",
       "projectStyle": "PackageReference",

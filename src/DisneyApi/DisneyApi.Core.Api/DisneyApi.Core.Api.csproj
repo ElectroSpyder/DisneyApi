@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DisneyApi.Core.Logic\DisneyApi.Core.LogicRepositories.csproj" />
+    <ProjectReference Include="..\DisneyApi.Core.Logic\DisneyApi.Core.Repositories.csproj" />
     <ProjectReference Include="..\DisneyApi.Core.Models\DisneyApi.Core.Models.csproj" />
   </ItemGroup>
 
