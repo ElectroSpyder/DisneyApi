@@ -3,37 +3,48 @@
     using AutoMapper;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
+    using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Entities;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Routing;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]    
     public class PersonajeController : ControllerBase
     {
-        private readonly PersonajeRepository personajeRepository;
+        private readonly IPersonajeRepository _personajeRepository;
         private readonly IMapper _mapper;
-        public PersonajeController(PersonajeRepository repository, IMapper mapper) 
+
+        public PersonajeController(IPersonajeRepository repository, IMapper mapper) 
         {
-            personajeRepository = repository;
+            _personajeRepository = repository;
             _mapper = mapper;
         }
 
         [HttpGet("/characters")]
         public async Task<ActionResult<List<ListPersonajeViewModel>>> GetAll()
         {
-            IList<Personaje> result = await personajeRepository.GetAll(); ;
-            
-            
-            if (result == null) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
+            try
+            {
+                var result = await _personajeRepository.GetAll(); ;
 
-            var listPersonaje = _mapper.Map<List<ListPersonajeViewModel>>(result);
-            return listPersonaje;
+
+                if (result == null || result.Count == 0) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
+
+                var listPersonaje = _mapper.Map<List<ListPersonajeViewModel>>(result);
+                return listPersonaje;
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al devolver datos, error : {ex.Message}");
+            }
+
         }
 
         [HttpGet("/{name}")]
@@ -44,7 +55,7 @@
                 if (string.IsNullOrEmpty(name))
                     return StatusCode(StatusCodes.Status500InternalServerError, "Nombre vacio");
 
-                var result = await  personajeRepository.GetByFunc(x => x.Nombre == name);
+                var result = await  _personajeRepository.GetByFunc(x => x.Nombre == name);
 
                 if (result == null)
                     return NotFound($"Persnaje {name} no encontrado");
@@ -59,21 +70,31 @@
 
 
         [HttpPost("/personaje/Add")]
-        public async Task<PersonajeViewModel> Add(PersonajeViewModel personajeViewModel)
-        {
-            var entityMap = _mapper.Map<Personaje>(personajeViewModel);
-            await personajeRepository.Add(entityMap);
-            
-            return personajeViewModel;
-
-        }
-
-        [HttpPut("/personaje/update")]
-        public async Task<ActionResult<PersonajeViewModel>> Put(PersonajeViewModel personajeViewModel)
+        public async Task<ActionResult<PersonajeViewModel>> Add(PersonajeViewModel personajeViewModel)
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
+               
+                var entityMap = _mapper.Map<Personaje>(personajeViewModel);
+                if (await _personajeRepository.Add(entityMap) == null)
+                    return BadRequest($"Ocurrio un error al guardar el personaje {personajeViewModel.Nombre}");
+
+               
+                return Ok(personajeViewModel);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }            
+
+        }
+
+        [HttpPut("/personaje/update/{nombre}")]
+        public async Task<ActionResult<PersonajeViewModel>> Put(string nombre, PersonajeViewModel personajeViewModel)
+        {
+            try
+            {
+                var entityExist = await _personajeRepository.GetByFunc(x => x.Nombre == nombre, null);
                 var personajeExist = new Personaje();
                 if (!entityExist.ToList().Any())
                 {                    
@@ -83,8 +104,8 @@
 
                 _mapper.Map(personajeViewModel, personajeExist);
 
-                if (await personajeRepository.Update(personajeExist) != null) 
-                    return Ok(_mapper.Map<GeneroViewModel>(personajeExist));
+                if (await _personajeRepository.Update(personajeExist) != null) 
+                    return Ok(_mapper.Map<PersonajeViewModel>(personajeExist));
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 
@@ -96,17 +117,17 @@
 
         }
 
-        [HttpDelete("/personaje/delete")]
-        public async Task<ActionResult<PersonajeViewModel>> Delete(PersonajeViewModel personajeViewModel)
+        [HttpDelete("/personaje/delete/{nombre}")]
+        public async Task<ActionResult<PersonajeViewModel>> Delete(string nombre, PersonajeViewModel personajeViewModel)
         {
             try
             {
-                var entityExist = await personajeRepository.GetByFunc(x => x.Id == personajeViewModel.Id, null);
+                var entityExist = await _personajeRepository.GetByFunc(x => x.Nombre == nombre, null);
                 if (entityExist == null) return NotFound();
 
                 var personajeExist = entityExist.ToList()[0];
 
-                var result = await personajeRepository.Delete(personajeExist.Id);
+                var result = await _personajeRepository.Delete(personajeExist.Id);
                 if (result != null)
                 {
                     return Ok(_mapper.Map(result,personajeViewModel));

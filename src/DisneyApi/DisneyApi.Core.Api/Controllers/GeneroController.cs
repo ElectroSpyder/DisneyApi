@@ -3,6 +3,7 @@
     using AutoMapper;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.Logic.EntitiesRepositories;
+    using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Entities;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -12,20 +13,20 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class GeneroController : ControllerBase
     {
 
-        private readonly GeneroRepository generoRepository;
+        private readonly IGeneroRepository generoRepository;
         public byte[] Contentt { get; set; }
-        private readonly IMapper _autoMapper;
+        private readonly IMapper _mapper;
 
-        public GeneroController(GeneroRepository repository, IMapper mapper)
+        public GeneroController(IGeneroRepository repository, IMapper mapper)
         {
             generoRepository = repository;
-            _autoMapper = mapper;
+            _mapper = mapper;
         }       
 
         [HttpPost()]       
@@ -33,10 +34,7 @@
         {
             try
             {
-                var genero = new Genero
-                {
-                    Nombre = generoViewModel.Nombre
-                };
+                var genero = _mapper.Map<Genero>(generoViewModel);
 
                 var generoCreat = await generoRepository.Add(genero);
                 if (generoCreat == null)
@@ -80,7 +78,7 @@
                 if (listGenero == null) return NotFound();
                 if (listGenero.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No se encontraron Generos para visualizar");
                 
-                var listGeneroviewModel = _autoMapper.Map<List<GeneroViewModel>>(listGenero);
+                var listGeneroviewModel = _mapper.Map<List<GeneroViewModel>>(listGenero);
                 return Ok(listGeneroviewModel);
             }
             catch (Exception ex)
@@ -119,10 +117,10 @@
                 if (oldModel == null) return NotFound();
 
                 var modelo = oldModel.ToList()[0];
-                _autoMapper.Map(generoViewModel, modelo);
+                _mapper.Map(generoViewModel, modelo);
 
                if(await generoRepository.Update(modelo) != null) 
-                    return Ok(_autoMapper.Map<GeneroViewModel>(modelo));
+                    return Ok(_mapper.Map<GeneroViewModel>(modelo));
 
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
 

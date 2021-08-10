@@ -23,7 +23,7 @@ namespace DisneyApi.Core.Models.Entities
 
         [Display(Name = "Calificación")]
         [Range(1,5,ErrorMessage ="El rango permitido es del 1 al 5")]
-        public string Calificacion { get; set; }
+        public int Calificacion { get; set; }
 
         public int IdGenero { get; set; }
         public Genero Genero { get; set; }

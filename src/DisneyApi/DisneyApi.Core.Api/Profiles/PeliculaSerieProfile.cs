@@ -10,8 +10,12 @@ namespace DisneyApi.Core.Api.Configuration
     {
         public PeliculaSerieProfile()
         {
-            CreateMap<PeliculaSerie, PeliculaSerieViewModel>();
+            CreateMap<PeliculaSerie, PeliculaSerieViewModel>()
+                .ForMember(x=> x.Genero , p=> p.MapFrom(m => m.Genero.Nombre));
             CreateMap<PeliculaSerieViewModel, PeliculaSerie>();
+
+            CreateMap<PeliculaSerie, PeliculaSerieAddViewModel>();
+            CreateMap<PeliculaSerieAddViewModel, PeliculaSerie>();
         }
     }
 }

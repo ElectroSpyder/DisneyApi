@@ -4,14 +4,16 @@ using DisneyApi.Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyApi.Core.Models.Migrations
 {
     [DbContext(typeof(DisneyDBContext))]
-    partial class DisneyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210810103909_TestEnServidorVirtual")]
+    partial class TestEnServidorVirtual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace DisneyApi.Core.Models.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Calificacion")
-                        .HasColumnType("int");
+                    b.Property<string>("Calificacion")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("FechaCreacion")
                         .HasColumnType("datetime2");
