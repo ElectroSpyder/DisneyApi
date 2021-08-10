@@ -5917,7 +5917,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sistemas\\.nuget\\packages\\": {},
+    "C:\\Users\\Pedro René González\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
@@ -5925,11 +5925,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
+      "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
       "projectName": "DisneyApi.Core.Models",
-      "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
-      "packagesPath": "C:\\Users\\Sistemas\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\obj\\",
+      "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
+      "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
+      "outputPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -5937,7 +5937,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sistemas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Pedro René González\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"

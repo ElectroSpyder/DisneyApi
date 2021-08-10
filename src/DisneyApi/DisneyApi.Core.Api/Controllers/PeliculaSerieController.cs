@@ -27,13 +27,6 @@
         [HttpGet("/movies")]
         public async Task<ActionResult<List<PeliculaSerieViewModel>>> GetAll(string name, int genre, string order)
         {
-            /*var result = await peliculaSerieRepository.GetAll();
-            if (result == null) return NotFound();
-            if(result.Count == 0) return StatusCode(StatusCodes.Status500InternalServerError, "Error al devolver datos");
-
-            var entityMap = _mapper.Map<List<PeliculaSerieViewModel>>(result);
-            return Ok(entityMap);*/
-
             List<PeliculaSerie> result = null;
             if (name == null && genre == 0)
             {

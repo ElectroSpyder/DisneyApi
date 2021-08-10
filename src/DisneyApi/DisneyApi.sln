@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Api", "Disne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Models", "DisneyApi.Core.Models\DisneyApi.Core.Models.csproj", "{777F8EBC-50F8-41EB-B363-4D471FD9959F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Logic", "DisneyApi.Core.Logic\DisneyApi.Core.Logic.csproj", "{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.Email", "DisneyApi.Core.Email\DisneyApi.Core.Email.csproj", "{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyApi.Core.LogicRepositories", "DisneyApi.Core.Logic\DisneyApi.Core.LogicRepositories.csproj", "{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C83E18F6-CABE-4FDF-8CEE-9998A1BC3E61}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F0B71D8-CACE-47F8-BBF1-6AD952C36212}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

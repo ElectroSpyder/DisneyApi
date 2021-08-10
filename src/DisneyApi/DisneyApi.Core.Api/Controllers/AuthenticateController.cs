@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using DisneyApi.Core.Api.Configuration;
+﻿using DisneyApi.Core.Api.Configuration;
 using DisneyApi.Core.Api.ViewModels;
-using DisneyApi.Core.Email;
-using DisneyApi.Core.Logic.EntitiesRepositories;
 using DisneyApi.Core.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -21,7 +18,7 @@ namespace DisneyApi.Core.Api.Controllers
 {
     public class AuthenticateController : Controller
     {
-        //private readonly UsuarioRepository _usuarioRepository; TODO: need implement IPasswordHasher<TUser>
+        
         private readonly IConfiguration _configuration;
         //private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;

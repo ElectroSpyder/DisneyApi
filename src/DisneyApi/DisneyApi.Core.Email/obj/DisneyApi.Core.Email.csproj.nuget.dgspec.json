@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj": {}
+    "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj": {}
   },
   "projects": {
-    "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj": {
+    "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
+        "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
         "projectName": "DisneyApi.Core.Email",
-        "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
-        "packagesPath": "C:\\Users\\Sistemas\\.nuget\\packages\\",
-        "outputPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Email\\obj\\",
+        "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Email\\DisneyApi.Core.Email.csproj",
+        "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
+        "outputPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Email\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sistemas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pedro René González\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"

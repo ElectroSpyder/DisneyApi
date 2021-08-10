@@ -2,6 +2,7 @@ namespace DisneyApi.Core.Api
 {
     using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Logic.EntitiesRepositories;
+    using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Context;
     using DisneyApi.Core.Models.Entities;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,7 +28,7 @@ namespace DisneyApi.Core.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+     
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<User, IdentityRole>(options =>
@@ -48,7 +49,7 @@ namespace DisneyApi.Core.Api
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options =>   // Adding Jwt Bearer
+                .AddJwtBearer(options =>   
                 {
                     options.SaveToken = true;
                     options.RequireHttpsMetadata = false;
@@ -68,10 +69,9 @@ namespace DisneyApi.Core.Api
             services.AddCors();
             services.AddMvc();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddDistributedMemoryCache(); 
             services.AddSession();
 
-            //services.Configure<SendEmailKey>(Configuration.GetSection("SendEmailKey"));
          
             services.AddDbContext<DisneyDBContext>(cfg =>
             {
@@ -83,11 +83,10 @@ namespace DisneyApi.Core.Api
                 cfg.UseSqlServer(Configuration.GetConnectionString("UserIdentityConnection"));     //  Base Test 
             });
 
-            //services.AddTransient<IMailService, MailService>();
-            services.AddScoped<PersonajeRepository>();
-            services.AddScoped<PeliculaSerieRepository>();
-            services.AddScoped<UsuarioRepository>();
-            services.AddScoped<GeneroRepository>();
+            services.AddScoped<IPersonajeRepository, PersonajeRepository>();
+            services.AddScoped<IPeliculaSerieRepository, PeliculaSerieRepository>();
+           
+            services.AddScoped<IGeneroRepository, GeneroRepository>();
             services.AddScoped<IMailService, SendEmailService>();
 
             services.AddSwaggerGen(c =>
@@ -95,46 +94,9 @@ namespace DisneyApi.Core.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });
             });
 
-            /*
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {
-                    Title = "DisneyApi.Core.Api",
-                    Version = "v1",
-                    Description = "Authentication and Authorization for Disney.Api"
-                });
-
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "Enter => 'Bearer Token' for validate",
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] {}
-                    }
-                });
-
-            });
-
-            */
+           
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

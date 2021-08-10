@@ -34,8 +34,7 @@
       "DisneyApi.Core.Api/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
-          "DisneyApi.Core.Email": "1.0.0",
-          "DisneyApi.Core.Logic": "1.0.0",
+          "DisneyApi.Core.LogicRepositories": "1.0.0",
           "DisneyApi.Core.Models": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.AspNetCore.Identity": "2.2.0",
@@ -1692,29 +1691,15 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "DisneyApi.Core.Email/1.0.0": {
+      "DisneyApi.Core.LogicRepositories/1.0.0": {
         "dependencies": {
-          "SendGrid": "9.24.1"
+          "DisneyApi.Core.Models": "1.0.0"
         },
         "runtime": {
-          "DisneyApi.Core.Email.dll": {}
+          "DisneyApi.Core.LogicRepositories.dll": {}
         },
         "compile": {
-          "DisneyApi.Core.Email.dll": {}
-        }
-      },
-      "DisneyApi.Core.Logic/1.0.0": {
-        "dependencies": {
-          "DisneyApi.Core.Models": "1.0.0",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.8",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
-          "System.IdentityModel.Tokens.Jwt": "6.12.0"
-        },
-        "runtime": {
-          "DisneyApi.Core.Logic.dll": {}
-        },
-        "compile": {
-          "DisneyApi.Core.Logic.dll": {}
+          "DisneyApi.Core.LogicRepositories.dll": {}
         }
       },
       "DisneyApi.Core.Models/1.0.0": {
@@ -4388,12 +4373,7 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "DisneyApi.Core.Email/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DisneyApi.Core.Logic/1.0.0": {
+    "DisneyApi.Core.LogicRepositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

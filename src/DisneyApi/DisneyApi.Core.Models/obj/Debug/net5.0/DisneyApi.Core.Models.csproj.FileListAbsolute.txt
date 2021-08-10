@@ -41,7 +41,6 @@ D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\D
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\ref\DisneyApi.Core.Models.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.pdb
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.genruntimeconfig.cache
-D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Models\obj\Debug\net5.0\DisneyApi.Core.Models.csproj.AssemblyReference.cache
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\DisneyApi.Core.Models.deps.json
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\DisneyApi.Core.Models.runtimeconfig.json
 D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Models\bin\Debug\net5.0\DisneyApi.Core.Models.runtimeconfig.dev.json

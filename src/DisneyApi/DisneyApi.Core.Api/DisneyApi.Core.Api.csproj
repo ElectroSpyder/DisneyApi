@@ -30,8 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DisneyApi.Core.Email\DisneyApi.Core.Email.csproj" />
-    <ProjectReference Include="..\DisneyApi.Core.Logic\DisneyApi.Core.Logic.csproj" />
+    <ProjectReference Include="..\DisneyApi.Core.Logic\DisneyApi.Core.LogicRepositories.csproj" />
     <ProjectReference Include="..\DisneyApi.Core.Models\DisneyApi.Core.Models.csproj" />
   </ItemGroup>
 
