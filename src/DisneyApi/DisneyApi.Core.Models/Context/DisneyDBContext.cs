@@ -1,7 +1,6 @@
 ﻿namespace DisneyApi.Core.Models.Context
 {
     using DisneyApi.Core.Models.Entities;
-    using DisneyApi.Core.Models.EntitiesConfigurations;
     using Microsoft.EntityFrameworkCore;
 
     public class DisneyDBContext : DbContext
