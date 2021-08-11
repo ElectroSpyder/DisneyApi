@@ -4,14 +4,16 @@ using DisneyApi.Core.Models.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DisneyApi.Core.Models.Migrations
 {
     [DbContext(typeof(DisneyDBContext))]
-    partial class DisneyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210810155936_Change")]
+    partial class Change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,9 +56,6 @@ namespace DisneyApi.Core.Models.Migrations
                     b.Property<DateTime?>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GeneroId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdGenero")
                         .HasColumnType("int");
 
@@ -73,7 +72,7 @@ namespace DisneyApi.Core.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GeneroId");
+                    b.HasIndex("IdGenero");
 
                     b.ToTable("PeliculaSerie");
                 });
@@ -110,48 +109,64 @@ namespace DisneyApi.Core.Models.Migrations
                     b.ToTable("Personaje");
                 });
 
-            modelBuilder.Entity("PeliculaSeriePersonaje", b =>
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.PersonajePeliculaSerie", b =>
                 {
-                    b.Property<int>("PeliculasSeriesId")
+                    b.Property<int>("IdPersonaje")
                         .HasColumnType("int");
 
-                    b.Property<int>("PersonajesId")
+                    b.Property<int>("IdPeliculaSerie")
                         .HasColumnType("int");
 
-                    b.HasKey("PeliculasSeriesId", "PersonajesId");
+                    b.HasKey("IdPersonaje", "IdPeliculaSerie");
 
-                    b.HasIndex("PersonajesId");
+                    b.HasIndex("IdPeliculaSerie");
 
-                    b.ToTable("PeliculaSeriePersonaje");
+                    b.ToTable("PersonajePeliculaSeries");
                 });
 
             modelBuilder.Entity("DisneyApi.Core.Models.Entities.PeliculaSerie", b =>
                 {
                     b.HasOne("DisneyApi.Core.Models.Entities.Genero", "Genero")
                         .WithMany("PeliculaSeries")
-                        .HasForeignKey("GeneroId");
+                        .HasForeignKey("IdGenero")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Genero");
                 });
 
-            modelBuilder.Entity("PeliculaSeriePersonaje", b =>
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.PersonajePeliculaSerie", b =>
                 {
-                    b.HasOne("DisneyApi.Core.Models.Entities.PeliculaSerie", null)
-                        .WithMany()
-                        .HasForeignKey("PeliculasSeriesId")
+                    b.HasOne("DisneyApi.Core.Models.Entities.PeliculaSerie", "PeliculaSerie")
+                        .WithMany("PersonajePeliculasSeries")
+                        .HasForeignKey("IdPeliculaSerie")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DisneyApi.Core.Models.Entities.Personaje", null)
-                        .WithMany()
-                        .HasForeignKey("PersonajesId")
+                    b.HasOne("DisneyApi.Core.Models.Entities.Personaje", "Personaje")
+                        .WithMany("PersonajePeliculasSeries")
+                        .HasForeignKey("IdPersonaje")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PeliculaSerie");
+
+                    b.Navigation("Personaje");
                 });
 
             modelBuilder.Entity("DisneyApi.Core.Models.Entities.Genero", b =>
                 {
                     b.Navigation("PeliculaSeries");
+                });
+
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.PeliculaSerie", b =>
+                {
+                    b.Navigation("PersonajePeliculasSeries");
+                });
+
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.Personaje", b =>
+                {
+                    b.Navigation("PersonajePeliculasSeries");
                 });
 #pragma warning restore 612, 618
         }

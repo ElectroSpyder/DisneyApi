@@ -19,7 +19,8 @@
         }
 
         public async Task<PeliculaSerie> Add(PeliculaSerie entity)
-        {
+        {          
+           
             _context.Set<PeliculaSerie>().Add(entity);
             await _context.SaveChangesAsync();
             return entity;

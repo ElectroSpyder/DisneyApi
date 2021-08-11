@@ -7,6 +7,10 @@ namespace DisneyApi.Core.Models.Entities
 {
     public class PeliculaSerie: ObjetoBase
     {
+        public PeliculaSerie()
+        {
+            Personajes = new HashSet<Personaje>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -27,6 +31,6 @@ namespace DisneyApi.Core.Models.Entities
 
         public int IdGenero { get; set; }
         public Genero Genero { get; set; }
-        public virtual ICollection<PersonajePeliculaSerie> PersonajePeliculasSeries { get; set; }
+        public virtual ICollection<Personaje> Personajes { get; set; }
     }
 }

@@ -67,7 +67,8 @@ namespace DisneyApi.Core.Api
 
             services.AddControllers();
             services.AddCors();
-            services.AddMvc();
+            services.AddMvc().AddNewtonsoftJson();
+            
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDistributedMemoryCache(); 
             services.AddSession();
@@ -92,7 +93,7 @@ namespace DisneyApi.Core.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                /*c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Description = "Please insert JWT with Bearer into field",
@@ -110,7 +111,7 @@ namespace DisneyApi.Core.Api
                             Id="Bearer"
                         }
                     }, new string[]{ } }
-                });
+                });*/
                 
             });
 

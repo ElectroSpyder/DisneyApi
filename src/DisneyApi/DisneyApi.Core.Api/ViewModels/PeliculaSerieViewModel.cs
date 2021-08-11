@@ -1,6 +1,7 @@
 ﻿namespace DisneyApi.Core.Api.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class PeliculaSerieViewModel
@@ -18,6 +19,8 @@
         public int Calificacion { get; set; }
 
         [Display(Name = "Genero")]
-        public string Genero { get; set; }
+        public string GeneroNombre { get; set; }
+
+        //public ICollection<PersonajeViewModel> Personajes { get; set; } = null;
     }
 }

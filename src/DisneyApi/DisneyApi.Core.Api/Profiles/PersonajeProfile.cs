@@ -12,6 +12,9 @@
             CreateMap<PersonajeViewModel, Personaje>();
             CreateMap<Personaje, ListPersonajeViewModel>();
             CreateMap<ListPersonajeViewModel, Personaje>();
+
+            CreateMap<PersonajeAllEntitiesViewModel, Personaje>();
+            CreateMap<Personaje, PersonajeAllEntitiesViewModel>();
         }
     }
 }

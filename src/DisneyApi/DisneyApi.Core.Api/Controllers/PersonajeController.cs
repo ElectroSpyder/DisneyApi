@@ -19,12 +19,19 @@
     public class PersonajeController : ControllerBase
     {
         private readonly IPersonajeRepository _personajeRepository;
+        private readonly IPeliculaSerieRepository _peliculaSerieRepository;
+        private readonly IGeneroRepository _generoRepository;
         private readonly IMapper _mapper;
 
-        public PersonajeController(IPersonajeRepository repository, IMapper mapper) 
+        public PersonajeController(IPersonajeRepository repository, 
+            IMapper mapper, 
+            IPeliculaSerieRepository peliculaSerieRepository,
+            IGeneroRepository generoRepository) 
         {
             _personajeRepository = repository;
             _mapper = mapper;
+            _peliculaSerieRepository = peliculaSerieRepository;
+            _generoRepository = generoRepository;
         }
 
         [HttpGet("/characters")]
@@ -70,12 +77,48 @@
 
 
         [HttpPost("/personaje/Add")]
-        public async Task<ActionResult<PersonajeViewModel>> Add(PersonajeViewModel personajeViewModel)
+        public async Task<ActionResult<PersonajeViewModel>> Add(PersonajeAllEntitiesViewModel personajeViewModel)
         {
             try
             {
-               
+                var peliculas = new List<PeliculaSerie>();
+                if (personajeViewModel.PeliculasSeries.Count > 0)
+                {
+                    foreach (var peli in personajeViewModel.PeliculasSeries)
+                    {
+                        var result = (await _peliculaSerieRepository.GetByFunc(x => x.Titulo == peli.Titulo)).ToList();
+                        if (result.Count == 0 || result == null)
+                        {
+                            var newGenero = new Genero { Nombre = peli.GeneroNombre };
+
+                            var generoFind = (await _generoRepository.GetByFunc(x => x.Nombre == peli.GeneroNombre)).ToList();
+
+                            if (generoFind == null || generoFind.Count() == 0)
+                            {
+                                newGenero = await _generoRepository.Add(newGenero);
+                            }
+                            else
+                            {
+                                newGenero = generoFind[0];
+                            }
+
+                            var newPeli = _mapper.Map<PeliculaSerie>(peli);
+                            newPeli.Genero = newGenero;
+                            peliculas.Add(newPeli);
+                        }
+                        else
+                        {
+                            foreach (var item in result)
+                            {
+                                peliculas.Add(item);
+                            }
+                        }
+                    } 
+                }
+
                 var entityMap = _mapper.Map<Personaje>(personajeViewModel);
+                entityMap.PeliculasSeries = peliculas;
+
                 if (await _personajeRepository.Add(entityMap) == null)
                     return BadRequest($"Ocurrio un error al guardar el personaje {personajeViewModel.Nombre}");
 
@@ -132,7 +175,6 @@
                 {
                     return Ok(_mapper.Map(result,personajeViewModel));
                 }
-
 
             }
             catch (System.Exception ex)

@@ -1,11 +1,13 @@
-﻿namespace DisneyApi.Core.Api.ViewModels
+﻿
+
+namespace DisneyApi.Core.Api.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class PersonajeViewModel
+    public class PersonajeAllEntitiesViewModel
     {
-        
         [Required]
         [StringLength(150, ErrorMessage = "El nombre no puede superar los {1} caracteres")]
         public string Nombre { get; set; }
@@ -26,6 +28,6 @@
         public string ImagenUrl { get; set; }
 
         public string ImagenTitulo { get; set; }
-        //public ICollection<PeliculaSerieViewModel> PeliculasSeries { get; set; }
+        public ICollection<PeliculaSerieViewModel> PeliculasSeries { get; set; }
     }
 }

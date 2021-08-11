@@ -10,13 +10,13 @@
         {
             builder.HasKey(x => new { x.IdPersonaje, x.IdPeliculaSerie });
 
-            builder.HasOne(x => x.Personaje)
-                .WithMany(x => x.PersonajePeliculasSeries)
+            /*builder.HasOne(x => x.Personaje)
+                .WithMany(x => x.PeliculasSeries)
                 .HasForeignKey(x => x.IdPersonaje);
 
             builder.HasOne(x => x.PeliculaSerie)
-                .WithMany(x => x.PersonajePeliculasSeries)
-                .HasForeignKey(x => x.IdPeliculaSerie);
+                .WithMany(x => x.Personajes)
+                .HasForeignKey(x => x.IdPeliculaSerie);*/
 
 
         }

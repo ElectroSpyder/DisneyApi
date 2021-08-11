@@ -1,9 +1,10 @@
 ﻿namespace DisneyApi.Core.Api.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class PeliculaSerieAddViewModel
+    public class PeliculaSerieAllEntitiesViewModel
     {
         [Required]
         [StringLength(150, ErrorMessage = "El nombre no puede superar los {1} caracteres")]
@@ -16,5 +17,7 @@
         [Display(Name = "Calificación")]
         [Range(1, 5, ErrorMessage = "El rango permitido es del 1 al 5")]
         public int Calificacion { get; set; }
+        public string GeneroNombre { get; set; }
+        public ICollection<PersonajeViewModel> Personajes { get; set; }
     }
 }

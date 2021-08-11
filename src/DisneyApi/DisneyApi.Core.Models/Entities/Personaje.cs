@@ -6,6 +6,10 @@
 
     public class Personaje: ObjetoBase
     {
+        public Personaje()
+        {
+            PeliculasSeries = new HashSet<PeliculaSerie>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,6 +27,6 @@
         [StringLength(1000,ErrorMessage ="La Historia debe ser corta, hasta {1} caracteres")]
         public string Historia { get; set; }
 
-        public virtual ICollection<PersonajePeliculaSerie>  PersonajePeliculasSeries { get; set; }
+        public virtual ICollection<PeliculaSerie>  PeliculasSeries { get; set; }
     }
 }
