@@ -108,25 +108,29 @@
                 };
 
                 var personajes = new List<Personaje>();
-                if (peliculaSerieViewModel.Personajes.Count > 0)
+                if (peliculaSerieViewModel.Personajes != null)
                 {
-                    foreach (var pers in peliculaSerieViewModel.Personajes)
+                    if (peliculaSerieViewModel.Personajes.Count > 0)
                     {
-                        var resultPersonas = (await _personajeRepository.GetByFunc(x => x.Nombre == pers.Nombre)).ToList();
-                        if (resultPersonas != null || resultPersonas.Count > 0)
+                        foreach (var pers in peliculaSerieViewModel.Personajes)
                         {
-                            foreach (var item in resultPersonas)
+                            var resultPersonas = (await _personajeRepository.GetByFunc(x => x.Nombre == pers.Nombre)).ToList();
+                            if (resultPersonas != null || resultPersonas.Count > 0)
                             {
-                                await _personajeRepository.Add(item);
-                                personajes.Add(item);
+                                foreach (var item in resultPersonas)
+                                {
+                                    await _personajeRepository.Add(item);
+                                    personajes.Add(item);
+                                }
                             }
-                        }
-                        else
-                        {
-                            personajes.Add(_mapper.Map<Personaje>(pers));
+                            else
+                            {
+                                personajes.Add(_mapper.Map<Personaje>(pers));
+                            }
                         }
                     }
                 }
+              
 
                 entityMap.Personajes = personajes;
 

@@ -297,3 +297,6 @@ D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\obj\Debug\net5.0\Disn
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Proyecto NET\DisneyApi\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Proyecto Net\Disney.Api\src\DisneyApi\DisneyApi.Core.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
