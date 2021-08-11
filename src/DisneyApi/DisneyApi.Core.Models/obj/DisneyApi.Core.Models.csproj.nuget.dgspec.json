@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {}
+    "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {}
   },
   "projects": {
-    "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
+    "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
+        "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
         "projectName": "DisneyApi.Core.Models",
-        "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
-        "packagesPath": "C:\\Users\\Sistemas\\.nuget\\packages\\",
-        "outputPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\obj\\",
+        "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj",
+        "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
+        "outputPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sistemas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pedro René González\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

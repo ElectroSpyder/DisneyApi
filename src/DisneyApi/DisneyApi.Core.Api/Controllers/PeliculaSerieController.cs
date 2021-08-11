@@ -2,7 +2,6 @@
 {
     using AutoMapper;
     using DisneyApi.Core.Api.ViewModels;
-    using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Entities;
     using Microsoft.AspNetCore.Authorization;
@@ -12,7 +11,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]    
     public class PeliculaSerieController : ControllerBase
