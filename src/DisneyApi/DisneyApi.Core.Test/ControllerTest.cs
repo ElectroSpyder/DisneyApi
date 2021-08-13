@@ -20,15 +20,14 @@ namespace DisneyApi.Core.Test
         private readonly Mock<IPeliculaSerieRepository> _peliculaRepository;
         private readonly Mock<IPersonajeRepository> _personajeRepository;
         private readonly Mock<IGeneroRepository> _generoRepository;
-        private readonly PeliculaSerieController peliculaSerieController;
-        private readonly Mock<IMapper> _iMapper;
+        private readonly PeliculaSerieController peliculaSerieController;        
 
         public ControllerTest()
         {
             _peliculaRepository = new Mock<IPeliculaSerieRepository>();
             _personajeRepository = new Mock<IPersonajeRepository>();
             _generoRepository = new Mock<IGeneroRepository>();
-            _iMapper = new Mock<IMapper>();
+            
 
             //auto mapper configuration
             var mockMapper = new MapperConfiguration(cfg =>
@@ -79,7 +78,7 @@ namespace DisneyApi.Core.Test
                 new PeliculaSerie { Id = 2, Titulo = "Test 2", Genero = new Genero{ Id=1, Nombre="Ciencia Ficcion" } },
                 new PeliculaSerie { Id = 3, Titulo = "Test Titulo", Genero = new Genero{ Id=1, Nombre="Ciencia Ficcion" } }
             });
-            //_iMapper.Setup(x => x.Map<List<PeliculaSerieViewModel>>(new List<PeliculaSerie>()));
+           
             //Act
             var result = peliculaSerieController.GetAll(null, 0, null);
 
