@@ -1,10 +1,12 @@
 namespace DisneyApi.Core.Api
 {
     using DisneyApi.Core.Api.Configuration;
+    using DisneyApi.Core.Api.Services;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Context;
     using DisneyApi.Core.Models.Entities;
+    using DisneyApi.Core.Repositories.UnitOfWork;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -84,12 +86,15 @@ namespace DisneyApi.Core.Api
                 cfg.UseSqlServer(Configuration.GetConnectionString("UserIdentityConnection"));     //  Base Test 
             });
 
-            services.AddScoped<IPersonajeRepository, PersonajeRepository>();
+            /*services.AddScoped<IPersonajeRepository, PersonajeRepository>();
             services.AddScoped<IPeliculaSerieRepository, PeliculaSerieRepository>();
            
             services.AddScoped<IGeneroRepository, GeneroRepository>();
+            */
             services.AddScoped<IMailService, SendEmailService>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IGeneroService, GeneroService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });

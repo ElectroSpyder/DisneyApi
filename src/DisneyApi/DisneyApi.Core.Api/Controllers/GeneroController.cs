@@ -1,9 +1,11 @@
 ﻿namespace DisneyApi.Core.Api.Controllers
 {
     using AutoMapper;
+    using DisneyApi.Core.Api.Services;
     using DisneyApi.Core.Api.ViewModels;
     using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Entities;
+    using DisneyApi.Core.Repositories.UnitOfWork;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -12,21 +14,24 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class GeneroController : ControllerBase
     {
-
-        private readonly IGeneroRepository generoRepository;
+        private IUnitOfWork _unitOfWork;
+        //private readonly IGeneroRepository generoRepository;
         public byte[] Contentt { get; set; }
         private readonly IMapper _mapper;
+        private IGeneroService _generoService;
 
-        public GeneroController(IGeneroRepository repository, IMapper mapper)
+        public GeneroController( IMapper mapper, IUnitOfWork unitOfWork, IGeneroService generoService)
         {
-            generoRepository = repository;
+            //generoRepository = repository;
             _mapper = mapper;
-        }       
+            _unitOfWork = unitOfWork;
+            _generoService = generoService;
+        }
 
         [HttpPost()]       
         public async Task<ActionResult<bool>> Add(GeneroViewModel generoViewModel)
@@ -35,7 +40,8 @@
             {
                 var genero = _mapper.Map<Genero>(generoViewModel);
 
-                var generoCreat = await generoRepository.Add(genero);
+                var generoCreat = await _generoService.AddGenero(genero);// _unitOfWork.GeneroRepository.Add(genero); // generoRepository.Add(genero);
+
                 if (generoCreat == null)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, "No se pudo agregar el genero");
@@ -49,17 +55,17 @@
             }            
 
         }
-
+        
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GeneroViewModel>> Get(int id)
         {
             try
             {
-                var genero = await generoRepository.Get(id);
+                var genero = await _generoService.GetGeneroByIdAsync(id);
 
                 if (genero == null) return NotFound();
 
-                return Ok(genero);
+                return Ok(_mapper.Map<GeneroViewModel>(genero));
             }
             catch (Exception ex)
             {
@@ -72,7 +78,7 @@
         {
             try
             {
-                var listGenero = await generoRepository.GetAll();
+                var listGenero = (await _generoService.GetGenerosAsync()).ToList();
 
                 if (listGenero == null) return NotFound();
                 if (listGenero.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No se encontraron Generos para visualizar");
@@ -85,7 +91,7 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
+/*
         [HttpDelete("{nombre}")]
         public async Task<ActionResult<bool>> Delete(string nombre)
         {
@@ -128,6 +134,6 @@
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-        }
+        }*/
     }
 }
