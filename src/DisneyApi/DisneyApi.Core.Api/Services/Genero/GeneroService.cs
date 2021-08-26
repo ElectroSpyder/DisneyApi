@@ -1,6 +1,7 @@
 ﻿using DisneyApi.Core.Models.Entities;
 using DisneyApi.Core.Repositories.UnitOfWork;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DisneyApi.Core.Api.Services
@@ -20,6 +21,18 @@ namespace DisneyApi.Core.Api.Services
             _unitOfWork.Save();
 
             return genero;
+        }
+
+        public async Task<Genero> DeleteGenero(string nombre)
+        {
+            var genero = await _unitOfWork.GeneroRepository.GetByFunc(x => x.Nombre == nombre);
+            if (genero != null)
+            {
+                var generoToDelete = genero.ToList()[0];
+                return await _unitOfWork.GeneroRepository.Delete(generoToDelete.Id);
+            }
+
+            return null;
         }
 
         public async Task<Genero> GetGeneroByIdAsync(int id)

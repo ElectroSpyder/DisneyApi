@@ -7122,7 +7122,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Pedro René González\\.nuget\\packages\\": {},
+    "C:\\Users\\Sistemas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
@@ -7130,11 +7130,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Api\\DisneyApi.Core.Api.csproj",
+      "projectUniqueName": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Api\\DisneyApi.Core.Api.csproj",
       "projectName": "DisneyApi.Core.Api",
-      "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Api\\DisneyApi.Core.Api.csproj",
-      "packagesPath": "C:\\Users\\Pedro René González\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Api\\obj\\",
+      "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Api\\DisneyApi.Core.Api.csproj",
+      "packagesPath": "C:\\Users\\Sistemas\\.nuget\\packages\\",
+      "outputPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7142,7 +7142,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Pedro René González\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sistemas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -7158,11 +7158,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj": {
-              "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj"
+            "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj": {
+              "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Logic\\DisneyApi.Core.Repositories.csproj"
             },
-            "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
-              "projectPath": "D:\\Proyecto NET\\DisneyApi\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj"
+            "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj": {
+              "projectPath": "D:\\Proyecto Net\\Disney.Api\\src\\DisneyApi\\DisneyApi.Core.Models\\DisneyApi.Core.Models.csproj"
             }
           }
         }

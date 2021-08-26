@@ -19,17 +19,17 @@
     [Route("[controller]")]
     public class GeneroController : ControllerBase
     {
-        private IUnitOfWork _unitOfWork;
+        //private IUnitOfWork _unitOfWork;
         //private readonly IGeneroRepository generoRepository;
         public byte[] Contentt { get; set; }
         private readonly IMapper _mapper;
         private IGeneroService _generoService;
 
-        public GeneroController( IMapper mapper, IUnitOfWork unitOfWork, IGeneroService generoService)
+        public GeneroController( IMapper mapper, IGeneroService generoService)
         {
             //generoRepository = repository;
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            //_unitOfWork = unitOfWork;
             _generoService = generoService;
         }
 
@@ -91,17 +91,13 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-/*
+
         [HttpDelete("{nombre}")]
         public async Task<ActionResult<bool>> Delete(string nombre)
         {
             try
-            {
-                var generoToDelete = await generoRepository.GetByFunc(x => x.Nombre == nombre, null);
-                if (generoToDelete == null) return NotFound();
-
-                var genero = generoToDelete.ToList()[0];
-                var result = await generoRepository.Delete(genero.Id);
+            {                
+                var result = await _generoService.DeleteGenero(nombre);
 
                 if (result != null) return Ok(true);
 
@@ -112,7 +108,7 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
+/*
         [HttpPut()]
         public async Task<ActionResult<GeneroViewModel>> Put(GeneroViewModel generoViewModel)
         {
