@@ -11,5 +11,6 @@ namespace DisneyApi.Core.Api.Services
         Task<IEnumerable<Genero>> GetGenerosAsync();
 
         Task<Genero> DeleteGenero(string nombre);
+        Task<Genero> PutGenero(int id);
     }
 }

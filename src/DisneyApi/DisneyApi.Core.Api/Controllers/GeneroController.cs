@@ -25,7 +25,7 @@
         private readonly IMapper _mapper;
         private IGeneroService _generoService;
 
-        public GeneroController( IMapper mapper, IGeneroService generoService)
+        public GeneroController(IMapper mapper, IGeneroService generoService)
         {
             //generoRepository = repository;
             _mapper = mapper;
@@ -33,7 +33,7 @@
             _generoService = generoService;
         }
 
-        [HttpPost()]       
+        [HttpPost()]
         public async Task<ActionResult<bool>> Add(GeneroViewModel generoViewModel)
         {
             try
@@ -52,10 +52,10 @@
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }            
+            }
 
         }
-        
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GeneroViewModel>> Get(int id)
         {
@@ -82,7 +82,7 @@
 
                 if (listGenero == null) return NotFound();
                 if (listGenero.Count == 0) return StatusCode(StatusCodes.Status204NoContent, "No se encontraron Generos para visualizar");
-                
+
                 var listGeneroviewModel = _mapper.Map<List<GeneroViewModel>>(listGenero);
                 return Ok(listGeneroviewModel);
             }
@@ -96,7 +96,7 @@
         public async Task<ActionResult<bool>> Delete(string nombre)
         {
             try
-            {                
+            {
                 var result = await _generoService.DeleteGenero(nombre);
 
                 if (result != null) return Ok(true);
@@ -108,28 +108,20 @@
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-/*
+        /**/
         [HttpPut()]
         public async Task<ActionResult<GeneroViewModel>> Put(GeneroViewModel generoViewModel)
         {
             try
             {
-                var oldModel = await generoRepository.GetByFunc(x => x.Id == generoViewModel.Id, null);
+                var oldModel = await _generoService.PutGenero(generoViewModel.Id);
                 if (oldModel == null) return NotFound();
-
-                var modelo = oldModel.ToList()[0];
-                _mapper.Map(generoViewModel, modelo);
-
-               if(await generoRepository.Update(modelo) != null) 
-                    return Ok(_mapper.Map<GeneroViewModel>(modelo));
-
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error al guardar");
-
+                return Ok(_mapper.Map<GeneroViewModel>(oldModel));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-        }*/
+        }
     }
 }

@@ -44,5 +44,19 @@ namespace DisneyApi.Core.Api.Services
         {
             return await _unitOfWork.GeneroRepository.GetAll();
         }
+
+        public async Task<Genero> PutGenero(int id)
+        {
+            var oldModel = (await _unitOfWork.GeneroRepository.GetByFunc(x => x.Id == id, null)).ToList();
+            if(oldModel != null)
+            {
+                if(oldModel.Any())
+                {
+                    return await _unitOfWork.GeneroRepository.Update(oldModel[0],id);
+                }
+            }
+
+            return null;
+        }
     }
 }
