@@ -12,7 +12,7 @@
         public DbSet<Personaje> Personaje { get; set; }
         public DbSet<PeliculaSerie> PeliculaSerie { get; set; }
         public DbSet<Genero> Genero { get; set; }
-        //public DbSet<PersonajePeliculaSerie> PersonajePeliculaSeries { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override  void OnModelCreating(ModelBuilder modelBuilder)
         {

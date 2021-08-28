@@ -110,6 +110,53 @@ namespace DisneyApi.Core.Models.Migrations
                     b.ToTable("Personaje");
                 });
 
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.Rol", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NameRol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rol");
+                });
+
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdRol")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Storesalt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RolId");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("PeliculaSeriePersonaje", b =>
                 {
                     b.Property<int>("PeliculasSeriesId")
@@ -134,6 +181,15 @@ namespace DisneyApi.Core.Models.Migrations
                     b.Navigation("Genero");
                 });
 
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.User", b =>
+                {
+                    b.HasOne("DisneyApi.Core.Models.Entities.Rol", "Rol")
+                        .WithMany("Users")
+                        .HasForeignKey("RolId");
+
+                    b.Navigation("Rol");
+                });
+
             modelBuilder.Entity("PeliculaSeriePersonaje", b =>
                 {
                     b.HasOne("DisneyApi.Core.Models.Entities.PeliculaSerie", null)
@@ -152,6 +208,11 @@ namespace DisneyApi.Core.Models.Migrations
             modelBuilder.Entity("DisneyApi.Core.Models.Entities.Genero", b =>
                 {
                     b.Navigation("PeliculaSeries");
+                });
+
+            modelBuilder.Entity("DisneyApi.Core.Models.Entities.Rol", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

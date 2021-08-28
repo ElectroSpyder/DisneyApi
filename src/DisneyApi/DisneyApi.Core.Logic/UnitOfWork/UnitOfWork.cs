@@ -4,9 +4,6 @@
     using DisneyApi.Core.Models.Entities;
     using DisneyApi.Core.Repositories.GenericRepository;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class UnitOfWork : IUnitOfWork
@@ -14,6 +11,9 @@
         private IGenericRepository<Genero> _generoRepository;
         private IGenericRepository<PeliculaSerie> _peliculaSerieRepository;
         private IGenericRepository<Personaje> _personajeRepository;
+        private IGenericRepository<User> _userRepository;
+        private IGenericRepository<Rol> _rolRepository;
+
         private readonly DisneyDBContext _disneyDBContext;
 
         private bool disposed;
@@ -43,15 +43,31 @@
             }
         }
 
+        public IGenericRepository<User> UserRepository
+        {
+            get
+            {
+                return _userRepository ??= new GenericRepository<User>(_disneyDBContext);
+            }
+        }
+
+        public IGenericRepository<Rol> RolRepository
+        {
+            get
+            {
+                return _rolRepository ??= new GenericRepository<Rol>(_disneyDBContext);
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        public void Save()
+        public async Task<bool> SaveAsync()
         {
-            _disneyDBContext.SaveChanges();
+            return await _disneyDBContext.SaveChangesAsync() > 0 ;
         }
 
         public virtual void Dispose(bool disposing)

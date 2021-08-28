@@ -18,9 +18,9 @@ namespace DisneyApi.Core.Api.Services
         public async Task<Genero> AddGenero(Genero genero)
         {
             await _unitOfWork.GeneroRepository.Add(genero);
-            _unitOfWork.Save();
+            if(await _unitOfWork.SaveAsync()) return genero;
 
-            return genero;
+            return null;
         }
 
         public async Task<Genero> DeleteGenero(string nombre)

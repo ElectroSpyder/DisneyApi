@@ -33,7 +33,7 @@ namespace DisneyApi.Core.Api
      
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>(options =>
+            /*services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 5;
@@ -43,7 +43,7 @@ namespace DisneyApi.Core.Api
             })
                 .AddEntityFrameworkStores<UserDbContext>()
                 .AddDefaultTokenProviders();
-           
+           */
 
             services.AddAuthentication(options =>
             {
@@ -81,10 +81,10 @@ namespace DisneyApi.Core.Api
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));     //  Base Test 
             });
 
-            services.AddDbContext<UserDbContext>(cfg =>
+           /* services.AddDbContext<UserDbContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("UserIdentityConnection"));     //  Base Test 
-            });
+            });*/
 
             /*services.AddScoped<IPersonajeRepository, PersonajeRepository>();
             services.AddScoped<IPeliculaSerieRepository, PeliculaSerieRepository>();

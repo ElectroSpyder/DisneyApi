@@ -16,7 +16,7 @@ namespace DisneyApi.Core.Test
 {
     public class ControllerTest
     {
-        
+        /*
         private readonly Mock<IPeliculaSerieRepository> _peliculaRepository;
         private readonly Mock<IPersonajeRepository> _personajeRepository;
         private readonly Mock<IGeneroRepository> _generoRepository;
@@ -88,5 +88,7 @@ namespace DisneyApi.Core.Test
             //Assert
             Assert.NotEmpty(listado);
         }
+
+        */
     }
 }

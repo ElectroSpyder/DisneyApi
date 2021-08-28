@@ -41,16 +41,17 @@ namespace DisneyApi.Core.Api.Controllers
         {
             try
             {
-                var usuarioExist = await _userManager.FindByNameAsync(loginViewModel.UserName);
+                var usuarioExist = await _userManager.FindByNameAsync(loginViewModel.Email);
                 if (usuarioExist != null )
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = $"Ya esta en uso el usuario {loginViewModel.UserName}" });
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Mensaje = $"Ya esta en uso el usuario {loginViewModel.Email}" });
                 
 
                 var usuario = new User()
                 {
                     Email = loginViewModel.Email,
-                    UserName = loginViewModel.UserName,
-                    SecurityStamp = Guid.NewGuid().ToString()
+                     PasswordHash = loginViewModel.Password,
+                    Storesalt = Guid.NewGuid().ToString()
+                    
                 };
 
                  var result = await _userManager.CreateAsync(usuario, loginViewModel.Password);
@@ -84,7 +85,7 @@ namespace DisneyApi.Core.Api.Controllers
         {
             try
             {
-                var result = await _userManager.FindByNameAsync(loginViewModel.UserName);
+                var result = await _userManager.FindByNameAsync(loginViewModel.Email);
 
                 if (result != null)
                 {

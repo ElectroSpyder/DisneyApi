@@ -21,8 +21,8 @@
 
         public async Task<T> Add(T entity)
         {
-            _dBContext.Set<T>().Add(entity);
-            await _dBContext.SaveChangesAsync();
+            await _dBContext.Set<T>().AddAsync(entity);
+           // await _dBContext.SaveChangesAsync();
             return entity;
         }
 

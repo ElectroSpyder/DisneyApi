@@ -3,6 +3,7 @@
     using DisneyApi.Core.Models.Entities;
     using DisneyApi.Core.Repositories.GenericRepository;
     using System;
+    using System.Threading.Tasks;
 
     public interface IUnitOfWork : IDisposable
     {
@@ -10,6 +11,6 @@
         IGenericRepository<PeliculaSerie> PeliculaSerieRepository { get;  }
         IGenericRepository<Personaje> PersonajeRepository { get;  }
 
-        void Save();
+        Task<bool> SaveAsync();
     }
 }
