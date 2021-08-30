@@ -13,7 +13,6 @@ namespace DisneyApi.Core.Models.Entities
         public string Email { get; set; }
         public string Storesalt { get; set; }
 
-        public int IdRol { get; set; }
-        public Rol Rol { get; set; }
+        public int IdRol { get; set; }        
     }
 }
