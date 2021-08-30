@@ -2,6 +2,7 @@ namespace DisneyApi.Core.Api
 {
     using DisneyApi.Core.Api.Configuration;
     using DisneyApi.Core.Api.Services;
+    using DisneyApi.Core.Api.Services.User;
     using DisneyApi.Core.Logic.EntitiesRepositories;
     using DisneyApi.Core.LogicRepositories.Repository;
     using DisneyApi.Core.Models.Context;
@@ -95,6 +96,8 @@ namespace DisneyApi.Core.Api
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IGeneroService, GeneroService>();
+            services.AddScoped<IUserService, UserService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DisneyApi.Core.Api", Version = "v1" });

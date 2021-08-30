@@ -7,9 +7,11 @@
 
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Genero> GeneroRepository { get;  }
-        IGenericRepository<PeliculaSerie> PeliculaSerieRepository { get;  }
-        IGenericRepository<Personaje> PersonajeRepository { get;  }
+        IGenericRepository<Genero> GeneroRepository { get; }
+        IGenericRepository<PeliculaSerie> PeliculaSerieRepository { get; }
+        IGenericRepository<Personaje> PersonajeRepository { get; }
+        IGenericRepository<User> UserRepository { get; }
+        IGenericRepository<Rol> RolRepository {get;}
 
         Task<bool> SaveAsync();
     }
